@@ -1,0 +1,109 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: Yu Gothic;
+}
+
+h1 {
+    text-align: center;
+}
+.box_title {
+    color: black;
+    text-decoration: underline;
+    font-size: x-large;
+    font-weight: bold;
+    margin: 0;
+    padding: 5px;
+    border-radius: 5px 5px 0 0;
+}
+
+
+.button {
+    padding: 5px;
+    margin: auto;
+    background-color: #223344;
+    color: white;
+}
+
+.button:hover {
+    background-color: white;
+    color: #223344;
+}
+
+.navbar {
+    overflow: hidden;
+    background-color: #234;
+    padding: 14px 16px;
+    margin: 0;
+}
+.navbar a, b{
+    float: left;
+    color: white;
+    text-align: center;
+    padding: 14px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+.navbar select {
+    float: left;
+    color: black;
+    padding: 14px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 0.001fr 1.8fr 1.6fr;
+    grid-template-rows: 1fr 1fr 1.2fr ;
+    grid-template-areas:
+                ". Left Right"
+                ". Left Right"
+                ". Bottom Bottom";
+}
+
+.left{
+    grid-area: Left;
+    background-color: #f0f0f0; /* Light grey background */
+    padding: 20px; /* Padding inside the boxes */
+    border: 1px solid #ddd; /* Light grey border */
+    display: flex;
+    flex-direction: column;
+}
+
+.right {
+    grid-area: Right;
+    background-color: #f0f0f0;
+    padding: 20px;
+    border: 1px solid #ddd;
+    display: flex;
+    flex-direction: column;
+}
+
+.bottom {
+    grid-area: Bottom;
+    background-color: #f0f0f0;
+    padding: 20px;
+    border: 1px solid #ddd;
+    display: flex;
+    flex-direction: column;
+}
+
+.left p{
+    font-size: large;
+    font-weight: bold;
+}
+
+.peekWindow {
+    display: none;
+}
+
+.score {
+    font-weight: bold;
+}
+
+.verseDisplay {
+    font-size: large;
+    font-weight: bold;
+}
