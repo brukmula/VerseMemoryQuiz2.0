@@ -3,9 +3,8 @@ const score = document.getElementById('score');
 const verse = document.getElementById('currentVerse');
 const difficulty = document.getElementById('difficulty');
 const scoreReveal = document.getElementById('scoreReveal');
-const fuzzScore = document.getElementById('btn');
 
-let currentScore = 0; //Score is 0 by default
+let currentScore = 0;
 score.innerText = 'Score: ' + (currentScore) + '%';
 
 const peekButton = document.getElementById('peekButton');
@@ -13,16 +12,7 @@ const peekButton = document.getElementById('peekButton');
 let peekEnabled = false;
 let peekUsed = false;
 
-let fuzzEnabled = false;
-
-//Turn fuzz on and off
-fuzzScore.addEventListener('change', () => {
-    fuzzEnabled = fuzzEnabled !== true;
-})
-
-//If user wants to see the current verse let them 'peek'
 peekButton.addEventListener('click', () => {
-    //If they have pressed the peek button and haven't used it yet
     if (!peekEnabled && !peekUsed){
         verse.style.visibility = 'visible';
         peekEnabled = true;
@@ -33,7 +23,6 @@ peekButton.addEventListener('click', () => {
 //Whenever user enters something in the input box
 userInput.addEventListener('input', () => {
 
-    //If they pressed the peek button, turn it off as soon as they start typing
     if(peekEnabled){
         verse.style.visibility = 'hidden';
         peekEnabled = false;
@@ -46,22 +35,18 @@ userInput.addEventListener('input', () => {
         currentScore = similarity;
         score.innerText = 'Score: ' + (currentScore) + '%';
 
-        //Set color to green once it has  reached
         if(currentScore >= difficulty.value){
             verse.style.visibility = 'visible';
             score.style.color = 'darkgreen';
         }
 
-        //Until user reaches a certain score, hide the verse
         if(difficulty.value > currentScore){
             verse.style.visibility = 'hidden';
         }
 
-        //If the current score is a 10th of the target score, turn color red
         if (currentScore < difficulty.value / 10){
             score.style.color = 'red';
         }
-        //Once user has reached halfway of target score turn yellow-ish
         else if (currentScore < difficulty.value / 2){
             score.style.color = 'darkorange';
         }
@@ -72,7 +57,6 @@ userInput.addEventListener('input', () => {
 
 //When user hits score button
 scoreReveal.addEventListener('click', () => {
-    //
     if (score.style.visibility === 'hidden'){
         scoreReveal.innerText = 'Hide Score';
         score.style.visibility = 'visible';

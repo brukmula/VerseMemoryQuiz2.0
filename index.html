@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Verse Memory Quiz</title>
-    <link rel = "stylesheet" href="style.css"></link>
+    <link rel = "stylesheet" href="public/style.css"></link>
 </head>
 <body>
 
@@ -32,7 +32,7 @@
     <select id = "difficulty">
         <option value = "100">100%</option>
         <option value = "75">75%</option>
-        <option value = "50">50%</option>
+        <option selected = "selected" value = "50">50%</option>
         <option value = "25">25%</option>
         <option value = "10">10%</option>
     </select>
@@ -51,9 +51,9 @@
     <!-- This is where the paraphrases appear-->
     <div class="left">
         <p>
-           <b class = "box_title">Verse Rephrased</b>
-            <button class = "button" id = "paraphraseButton">Other Paraphrase</button>
-            <button id = "peekButton" class = "button">Peek</button>
+           <b class = "box_title">Meaning of Verse</b>
+            <button class = "button" id = "paraphraseButton">Other Expressions</button>
+            <button id = "peekButton" class = "button">Check Verse</button>
         </p>
         <p id = "paraphrase"></p>
     </div>
@@ -83,8 +83,8 @@
 </div>
 
 
-<script src= "bookSelection.js"></script>
-<script src = "script.js"></script>
-<script src="bleuScore.js"></script>
+<script src= "public/bookSelection.js"></script>
+<script src = "public/script.js"></script>
+<script src="public/bleuScore.js"></script>
 </body>
 </html>
