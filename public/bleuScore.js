@@ -100,7 +100,7 @@ userInput.addEventListener('input', () => {
 //When user hits score button
 scoreReveal.addEventListener('click', () => {
     //
-    if (score.style.visibility === 'hidden'){
+    if (score.style.display === 'none'){
         scoreReveal.innerText = 'Hide Score';
         showCurrentScore = true;
         score.style.display = 'block';
