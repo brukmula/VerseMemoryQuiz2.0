@@ -1,4 +1,4 @@
-const bibleDataUrl = 'public/bibleData.json';
+const bibleDataUrl = '/public/jsonFiles/bibleData.json';
 
 let bibleData = {}; // This will hold the JSON data once fetched
 let bookSelectButton = document.getElementById('bookSelect');
