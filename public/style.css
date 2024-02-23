@@ -4,9 +4,20 @@ body, html {
     font-family: Yu Gothic;
 }
 
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
 h1 {
     text-align: center;
+    animation: fadeIn 2s ease-in-out;
+    background: linear-gradient(to right, #223344, #007BFF);
+    -webkit-background-clip: text;
+    color: transparent;
+    font-weight: bold;
 }
+
 .box_title {
     color: black;
     text-decoration: underline;
@@ -16,7 +27,6 @@ h1 {
     padding: 5px;
     border-radius: 5px 5px 0 0;
 }
-
 
 .button {
     padding: 5px;
@@ -30,27 +40,23 @@ h1 {
     color: #223344;
 }
 
-.navbar {
-    overflow: hidden;
-    background-color: #234;
-    padding: 14px 16px;
-    margin: 0;
-}
-.navbar a, b{
-    float: left;
-    color: white;
-    text-align: center;
-    padding: 14px;
-    text-decoration: none;
-    font-size: 17px;
+.bottom {
+    grid-area: Bottom;
+    background-color: #f0f0f0;
+    padding: 20px;
+    border: 1px solid #ddd;
+    display: flex;
+    flex-direction: column;
 }
 
-.navbar select {
-    float: left;
-    color: black;
-    padding: 14px;
-    text-decoration: none;
-    font-size: 17px;
+.closePeek {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 5px;
+    cursor: pointer;
+    font-size: 20px; /* X font size */
+    font-weight: bold;
 }
 
 .container {
@@ -63,6 +69,54 @@ h1 {
                 ". Bottom Bottom";
 }
 
+.help {
+    text-align: center;
+    align-content: center;
+}
+.help button{
+    background-color: #223344;
+    color: white;
+    padding: 10px;
+    margin: 2px;
+}
+
+.help button:hover {
+    background-color: #007BFF;
+    color: #223344;
+}
+
+.helpWindow {
+    font-size: large;
+    font-weight: bold;
+    position: fixed;
+    padding: 20px;
+    background-color: #E0DFD5;
+    color: black;
+    border: 1px solid #fff;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+    z-index: 1;
+    top: 10%;
+    left: 20%;
+    width: 60%;
+    max-height: 70%;
+    overflow: auto;
+}
+
+.helpWindow b {
+    color: black;
+    padding: 0;
+    margin: 0;
+    align-content: normal;
+}
+
+.navbar select {
+    float: left;
+    color: black;
+    padding: 14px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
 .left{
     grid-area: Left;
     background-color: #f0f0f0; /* Light grey background */
@@ -70,6 +124,10 @@ h1 {
     border: 1px solid #ddd; /* Light grey border */
     display: flex;
     flex-direction: column;
+}
+.left p{
+    font-size: large;
+    font-weight: bold;
 }
 
 .right {
@@ -81,22 +139,50 @@ h1 {
     flex-direction: column;
 }
 
-.bottom {
-    grid-area: Bottom;
-    background-color: #f0f0f0;
-    padding: 20px;
-    border: 1px solid #ddd;
-    display: flex;
-    flex-direction: column;
+
+.navbar {
+    overflow: hidden;
+    background-color: #234;
+    padding: 14px 16px;
+    margin: 0;
+}
+.navbar a, b, .peekButton{
+    float: left;
+    color: white;
+    text-align: center;
+    padding: 14px;
+    text-decoration: none;
+    font-size: 17px;
 }
 
-.left p{
-    font-size: large;
-    font-weight: bold;
+.peekButton {
+    padding: 15px;
+    color: #223344;
+    background-color: #fff;
+    margin: 10px;
+    margin-top: -2px;
 }
+
+.peekButton:hover {
+    color: white;
+    background-color: #223344;
+}
+
 
 .peekWindow {
     display: none;
+    font-size: large;
+    font-weight: bold;
+    position: fixed;
+    padding: 20px;
+    background-color: #E0DFD5;
+    color: black;
+    border: 1px solid #fff;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+    z-index: 1;
+    top: 40%;
+    left: 20%;
+    width: 60%;
 }
 
 .score {

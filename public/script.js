@@ -1,11 +1,11 @@
 //This file handles the bulk of the game logic
 
 //URL for books mapping
-const booksRef = 'public/references.json'
+const booksRef = '../references.json'
 let booksData = {};
 
 //URL for JSON file with paraphrase information
-const paraphrasesRef = 'public/wholeBible.json';
+const paraphrasesRef = '../wholeBibleWithVersions.json';
 let paraphraseData = {};
 
 // Async function to load and parse the JSON file
@@ -63,6 +63,7 @@ let paraphrases = {};
 bookSelect.addEventListener('change', () => {
     currentBook = bookSelect.value; //Get book string
     bookNumber = fetchBook(booksData,currentBook); //Send to fetch book to see what number is used to reference it
+
 });
 
 //Load in current chapter
@@ -82,7 +83,7 @@ verseSelect.addEventListener('change', () => {
     paraphraseDisplay.innerText = paraphrases[paraphraseIndex];
 
     //Fetch verse from JSON
-    verseText.innerText = fetchVerse(currentVerse);
+    verseText.textContent = fetchVerse(currentVerse);
     verseLoaded = true; //Set verse loaded to true
 
 });
@@ -94,7 +95,8 @@ difficultySelect.addEventListener('change',() => {
 
 //Wait for user to select a version
 versionSelect.addEventListener('change', () => {
-    currentVersion = versionSelect.value;
+    currentVersion = versionSelect.value.toLowerCase();
+    verseText.textContent = fetchVerse(currentVerse);
 });
 
 //When other paraphrase button is clicked, display the next paraphrase
@@ -137,10 +139,12 @@ function fetchVerseParaphrases(ref){
 
 //Function to fetch verse from JSON
 function fetchVerse(ref){
+
     const verse = paraphraseData.find(verse => verse.ref === ref);
-    return verse ? verse.text : null;
+    return verse ? verse[currentVersion] : null;
 }
 
+//Keeps track of current Paraphrase being displayed
 let paraphraseIndex = 0; //Current index of paraphrase being displayed
 
 //Function is called to go through all possible paraphrases of selected verse
@@ -153,7 +157,6 @@ function browseParaphrases () {
     } else {
         paraphraseIndex++;
     }
-
 }
 
 //Load data from books and paraphrases

@@ -4,15 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Verse Memory Quiz</title>
-    <link rel = "stylesheet" href="public/style.css"></link>
+    <link rel = "stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../toggle.css">
 </head>
 <body>
 
 <h1>Verse Memory Quiz</h1>
+<div class = "help">
+    <!--Button that opens help window-->
+    <button id = "helpButton" onclick="openHelpWindow()">Instructions</button>
+</div>
 
+
+<!--Navigation Bar-->
 <div class="navbar">
     <!-- Dropdown for selecting a book -->
     <label for="bookSelect"><b>Book: </b></label>
+
     <select id="bookSelect" onchange="populateBooks()">
         <!-- Options will be added here dynamically -->
     </select>
@@ -27,6 +35,9 @@
         <!-- Options will be added here dynamically -->
     </select>
 
+    <!-- Button to let user look at Verse -->
+    <button id = "peekButton" class = "peekButton">Review Verse</button>
+
     <!--Select Difficulty and Version-->
     <label for = "difficulty"><b>Difficulty</b>  </label>
     <select id = "difficulty">
@@ -36,6 +47,8 @@
         <option value = "25">25%</option>
         <option value = "10">10%</option>
     </select>
+
+    <!--Dropdown for version selection-->
     <label class="diff" for ="versionSelect"><b>Version:</b></label>
     <select id = "versionSelect">
         <option value = "esv" >ESV</option>
@@ -44,6 +57,20 @@
         <option value = "niv">NIV</option>
         <option value = "nlt">NLT</option>
     </select>
+
+    <!-- Switch that controls fuzz score -->
+    <b>Fuzz Score</b>
+    <div id = "toggle" class="toggle">
+        <input type="checkbox" id="btn">
+        <label for="btn">
+            <span class="thumb"></span>
+        </label>
+        <div class="light"></div>
+
+    </div>
+
+
+
 </div>
 
 <!--Game area-->
@@ -51,9 +78,8 @@
     <!-- This is where the paraphrases appear-->
     <div class="left">
         <p>
-           <b class = "box_title">Meaning of Verse</b>
+            <b class = "box_title">Meaning of Verse</b>
             <button class = "button" id = "paraphraseButton">Other Expressions</button>
-            <button id = "peekButton" class = "button">Check Verse</button>
         </p>
         <p id = "paraphrase"></p>
     </div>
@@ -66,8 +92,11 @@
         </p>
         <textarea style = "font-size: x-large" id = 'userInput'></textarea>
         <p  class = "score" id = "score"></p>
+
+        <p id = "correct"></p>
     </div>
 
+    <!--Div for verse to appear once user has reached goal-->
     <div class="bottom">
         <div>
             <p>
@@ -80,11 +109,23 @@
         </div>
 
     </div>
+
 </div>
 
+<div class = "peekWindow" id = "peekWindow">
+    <button id="closePeek" class = "closePeek">X</button>
+    <p id = "peekVerse">Select a verse to begin</p>
+</div>
 
-<script src= "public/bookSelection.js"></script>
-<script src = "public/script.js"></script>
-<script src="public/bleuScore.js"></script>
+<div style="display: none" class = "helpWindow" id = "helpWindow">
+    <p></p>
+    <h1 class ="welcome">Welcome to Verse Memory Quiz!</h1>
+</div>
+
+<script src= "../bookSelection.js"></script>
+<script src = "../script.js"></script>
+<script src="../bleuScore.js"></script>
+<script src="../helpScript.js"></script>
+<script src="./peek.js"></script>
 </body>
 </html>
