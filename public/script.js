@@ -1,11 +1,11 @@
 //This file handles the bulk of the game logic
 
 //URL for books mapping
-const booksRef = '../references.json'
+const booksRef = 'public/references.json'
 let booksData = {};
 
 //URL for JSON file with paraphrase information
-const paraphrasesRef = '../wholeBibleWithVersions.json';
+const paraphrasesRef = 'public/wholeBibleWithVersions.json';
 let paraphraseData = {};
 
 // Async function to load and parse the JSON file
