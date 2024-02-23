@@ -102,12 +102,12 @@ scoreReveal.addEventListener('click', () => {
     if (score.style.visibility === 'hidden'){
         scoreReveal.innerText = 'Hide Score';
         showCurrentScore = true;
-        score.style.visibility = 'visible';
+        score.style.display = 'block';
     }
     else {
         scoreReveal.innerText = 'Show Score';
         showCurrentScore = false;
-        score.style.visibility = 'hidden';
+        score.style.display = 'none';
     }
 });
 
