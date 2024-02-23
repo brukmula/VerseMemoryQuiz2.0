@@ -8,7 +8,7 @@ const wonDisplay = document.getElementById('correct');
 const verseSelection = document.getElementById('verseSelect');
 
 
-let versions = ['esv','niv', 'kjv','nlt','net'];
+let versions = ['esv','niv', 'kjv','nlt','net']; //Array of all Bible translations
 let showCurrentScore = true; //Keep track of visibility of current score
 let currentScore = 0; //Score is 0 by default
 score.innerText = 'Score: ' + (currentScore) + '%';
@@ -51,6 +51,7 @@ userInput.addEventListener('input', () => {
         score.innerText = 'Score: ' + (currentScore) + '%';
     }
 
+    //If fuzz score is turned on check users answer against all translations instead of just one
     if(fuzzEnabled) {
         let highest = []
         versions.forEach((selectedVersion) => {
@@ -111,6 +112,7 @@ scoreReveal.addEventListener('click', () => {
     }
 });
 
+//Grab all versions of the current verse
 function fetchAllVersions(ref, version){
     const verse = paraphraseData.find(verse => verse.ref === ref);
     return verse ? verse[version] : null;
