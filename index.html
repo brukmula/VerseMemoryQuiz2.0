@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Verse Memory Quiz</title>
-    <link rel = "stylesheet" href="/public/css/style.css">
-    <link rel="stylesheet" href="/public/css/toggle.css">
+    <link rel = "stylesheet" href="public/css/style.css">
+    <link rel="stylesheet" href="public/css/toggle.css">
 </head>
 <body>
 
@@ -21,17 +21,17 @@
     <!-- Dropdown for selecting a book -->
     <label for="bookSelect"><b>Book: </b></label>
 
-    <select id="bookSelect" onchange="populateBooks()">
+    <select class="select" id="bookSelect" onchange="populateBooks()">
         <!-- Options will be added here dynamically -->
     </select>
 
     <!-- Dropdown for selecting a chapter -->
-    <select id="chapterSelect" style= "visibility: hidden">
+    <select class="select" id="chapterSelect" style= "visibility: hidden">
         <!-- Options will be added here dynamically -->
     </select>
 
     <!-- Dropdown for selecting a verse -->
-    <select id="verseSelect" style="visibility: hidden">
+    <select class="select" id="verseSelect" style="visibility: hidden">
         <!-- Options will be added here dynamically -->
     </select>
 
@@ -40,7 +40,7 @@
 
     <!--Select Difficulty and Version-->
     <label for = "difficulty"><b>Difficulty</b>  </label>
-    <select id = "difficulty">
+    <select class="select" id = "difficulty">
         <option value = "100">100%</option>
         <option value = "75">75%</option>
         <option selected = "selected" value = "50">50%</option>
@@ -50,13 +50,14 @@
 
     <!--Dropdown for version selection-->
     <label class="diff" for ="versionSelect"><b>Version:</b></label>
-    <select id = "versionSelect">
+    <select class="select" id = "versionSelect">
         <option value = "esv" >ESV</option>
         <option value = "kjv">KJV</option>
         <option value = "net">NET</option>
         <option value = "niv">NIV</option>
         <option value = "nlt">NLT</option>
     </select>
+
 
     <!-- Switch that controls fuzz score -->
     <b>Fuzz Score</b>
@@ -122,10 +123,10 @@
     <h1 class ="welcome">Welcome to Verse Memory Quiz!</h1>
 </div>
 
-<script src= "/public/scripts/bookSelection.js"></script>
-<script src = "/public/scripts/script.js"></script>
-<script src="/public/scripts/bleuScore.js"></script>
-<script src="/public/scripts/helpScript.js"></script>
-<script src="/public/scripts/peek.js"></script>
+<script src= "public/scripts/bookSelection.js"></script>
+<script src = "public/scripts/script.js"></script>
+<script src="public/scripts/bleuScore.js"></script>
+<script src="public/scripts/helpScript.js"></script>
+<script src="public/scripts/peek.js"></script>
 </body>
 </html>

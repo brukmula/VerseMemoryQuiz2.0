@@ -20,33 +20,55 @@ h1 {
 
 .box_title {
     color: black;
-    text-decoration: underline;
-    font-size: x-large;
-    font-weight: bold;
+    /* Remove text-decoration for a cleaner look */
+    text-decoration: none;
+    font-size: 25px; /* Adjusted for a more dynamic sizing */
+    font-weight: 500; /* Lighter weight for sleekness */
     margin: 0;
     padding: 5px;
     border-radius: 5px 5px 0 0;
+    font-family: 'Poppins', sans-serif; /* Modern font choice */
+    letter-spacing: 0.05em; /* Adds elegance */
+    /* Subtle text shadow for depth without overwhelming */
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+    /* Smooth transition for hover effects */
+    transition: color 0.3s ease-in-out;
 }
 
 .button {
-    padding: 5px;
-    margin: auto;
-    background-color: #223344;
+    padding: 10px 20px; /* Increased padding for a larger click area and more prominent appearance */
+    margin: 1px 15px 10px;
+    background-color: #223344; /* Base color */
+    background-image: linear-gradient(to right, #223344, #334455); /* Adding a gradient for a more dynamic look */
     color: white;
+    border: none; /* Removes the default border */
+    border-radius: 5px; /* Rounded corners */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+    cursor: pointer; /* Changes the cursor to a pointer on hover to indicate it's clickable */
+    transition: all 0.3s ease; /* Smooth transition for hover effects */
 }
 
 .button:hover {
-    background-color: white;
-    color: #223344;
+    background-image: linear-gradient(to right, #334455, #445566); /* Darker gradient on hover for a subtle interaction effect */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Slightly larger shadow on hover for more depth */
+    transform: translateY(-2px); /* Slightly raises the button to mimic a "press" effect */
+}
+
+.button:active {
+    transform: translateY(1px); /* Mimics the button being pressed down */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Returns to the original shadow size */
 }
 
 .bottom {
     grid-area: Bottom;
-    background-color: #f0f0f0;
+    background-color: #fafafa;
     padding: 20px;
-    border: 1px solid #ddd;
+    border: 1px solid #eaeaea;
     display: flex;
     flex-direction: column;
+    /* Soft shadow for depth without being too intrusive */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    border-radius: 8px; /* Increased radius for modernity */
 }
 
 .closePeek {
@@ -74,26 +96,36 @@ h1 {
     align-content: center;
 }
 .help button{
-    background-color: #223344;
+    padding: 10px 20px; /* Increased padding for a larger click area and more prominent appearance */
+    margin: 10px 10px 10px;
+    background-color: #223344; /* Base color */
+    background-image: linear-gradient(to right, #223344, #334455); /* Adding a gradient for a more dynamic look */
     color: white;
-    padding: 10px;
-    margin: 2px;
+    border: none; /* Removes the default border */
+    border-radius: 5px; /* Rounded corners */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+    cursor: pointer; /* Changes the cursor to a pointer on hover to indicate it's clickable */
+    transition: all 0.3s ease; /* Smooth transition for hover effects */
 }
 
 .help button:hover {
-    background-color: #007BFF;
-    color: #223344;
+    background-image: linear-gradient(to right, #334455, #445566); /* Darker gradient on hover for a subtle interaction effect */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Slightly larger shadow on hover for more depth */
+    transform: translateY(-2px); /* Slightly raises the button to mimic a "press" effect */
 }
 
 .helpWindow {
     font-size: large;
     font-weight: bold;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     position: fixed;
     padding: 20px;
     background-color: #E0DFD5;
-    color: black;
+    background-image: linear-gradient(to right, #f5f7fa 0%, #c3cfe2 100%);
+    color: #333;
     border: 1px solid #fff;
-    box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08); /* Smoother shadow */
     z-index: 1;
     top: 10%;
     left: 20%;
@@ -119,11 +151,14 @@ h1 {
 
 .left{
     grid-area: Left;
-    background-color: #f0f0f0; /* Light grey background */
-    padding: 20px; /* Padding inside the boxes */
-    border: 1px solid #ddd; /* Light grey border */
+    background-color: #fafafa; /* Lighter shade for a fresher look */
+    padding: 20px;
+    border: 1px solid #eaeaea; /* Softer border color */
     display: flex;
     flex-direction: column;
+    /* Soft shadow for depth without being too intrusive */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    border-radius: 8px; /* Increased radius for modernity */
 }
 .left p{
     font-size: large;
@@ -132,11 +167,14 @@ h1 {
 
 .right {
     grid-area: Right;
-    background-color: #f0f0f0;
+    background-color: #fafafa;
     padding: 20px;
-    border: 1px solid #ddd;
+    border: 1px solid #eaeaea;
     display: flex;
     flex-direction: column;
+    /* Soft shadow for depth without being too intrusive */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    border-radius: 8px; /* Increased radius for modernity */
 }
 
 
@@ -157,17 +195,29 @@ h1 {
 
 .peekButton {
     padding: 15px;
-    color: #223344;
-    background-color: #fff;
+    background-color: #223344; /* Base color */
+    background-image: linear-gradient(to top, #fafafa, #eaeaea); /* Adding a gradient for a more dynamic look */
+    color: black;
+    border: none; /* Removes the default border */
+    border-radius: 5px; /* Rounded corners */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+    cursor: pointer; /* Changes the cursor to a pointer on hover to indicate it's clickable */
+    transition: all 0.3s ease;
     margin: 10px;
     margin-top: -2px;
 }
 
 .peekButton:hover {
+    background-image: linear-gradient(to right, #334455, #445566); /* Darker gradient on hover for a subtle interaction effect */
     color: white;
-    background-color: #223344;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Slightly larger shadow on hover for more depth */
+    transform: translateY(-2px); /* Slightly raises the button to mimic a "press" effect */
 }
 
+.peekButton:active {
+    transform: translateY(1px); /* Mimics the button being pressed down */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Returns to the original shadow size */
+}
 
 .peekWindow {
     display: none;
@@ -175,14 +225,41 @@ h1 {
     font-weight: bold;
     position: fixed;
     padding: 20px;
-    background-color: #E0DFD5;
-    color: black;
+    background: linear-gradient(to right, #334455 0%, #445566 100%); /* A cool gradient background */
+    color: white; /* Changing text color to white for better contrast */
     border: 1px solid #fff;
-    box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+    border-radius: 10px; /* Adding rounded corners */
+    box-shadow: 0px 8px 15px rgba(0,0,0,0.3); /* More dynamic shadow */
     z-index: 1;
     top: 40%;
     left: 20%;
     width: 60%;
+    transition: transform 0.3s ease, opacity 0.3s ease; /* Smooth transitions for transform & opacity */
+    transform: scale(0.95); /* Slightly scaled down to grow on hover */
+}
+
+.select {
+    background-color: #eaeaea;
+    color: black;
+    border: none; /* Removes the default border */
+    border-radius: 5px; /* Rounded corners */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+    cursor: pointer;
+}
+
+.select:hover {
+    background: linear-gradient(to right, #334455 0%, #445566 100%);
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    color: white;
+}
+
+.select option{
+    background-color: #eaeaea;
+    color: black;
+    border: none; /* Removes the default border */
+    border-radius: 5px; /* Rounded corners */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+    cursor: pointer;
 }
 
 .score {
