@@ -27,7 +27,7 @@ const helpWindowHTML = `
         </div>
 
         <h4>Understanding the Verse</h4>
-        <p>Upon selection, a paraphrased version of your chosen verse will appear in the Meaning of Verse box located on the left side of the screen. 
+        <p>Upon selection, a paraphrased version of your chosen verse will appear in the <u>Meaning of Verse</u> box located on the left side of the screen. 
         This paraphrase serves to provide you with an interpretation of the verse's message, reminding you of the content of the verse
         while you  attempt to recall the exact wording.
         </p>
@@ -81,7 +81,7 @@ const helpWindowHTML = `
         <h4>As you dive into the memory quiz, here's what to expect:</h4>
         
         <h4>Entering Your Answer</h4>
-        <p>The "Enter Your Answer" box on the right side of the screen is where you'll type what you believe the original verse says.
+        <p>The <u>Enter Your Answer</u> box on the right side of the screen is where you'll type what you believe the original verse says.
         As you input your answer, you'll notice your score fluctuating. 
         The score increases with the correct amount of your recollection, providing feedback to your progress for encouragement.
         </p>
@@ -100,7 +100,7 @@ const helpWindowHTML = `
         <h4>Achieving Correctness</h4>
         <p>
         The difficulty level you've chosen dictates the score threshold for a correct answer. 
-        Upon reaching the required score, a congratulatory message of "Correct!" is displayed, followed by the revelation of the complete verse at the bottom of the screen under "Complete Verse."
+        Upon reaching the required score, a congratulatory message of "Correct!" is displayed, followed by the revelation of the complete verse at the bottom of the screen under <u>Complete Verse.</u>
         </p>
            
         
