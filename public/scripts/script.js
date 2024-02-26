@@ -85,6 +85,7 @@ verseSelect.addEventListener('change', () => {
     //Fetch verse from JSON
     verseText.textContent = fetchVerse(currentVerse);
     verseLoaded = true; //Set verse loaded to true
+    overlayUsed = false; //Reset overlay to false
 
 });
 

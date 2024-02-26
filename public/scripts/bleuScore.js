@@ -15,6 +15,7 @@ let currentScore = 0; //Score is 0 by default
 score.innerText = 'Score: ' + (currentScore) + '%';
 
 let fuzzEnabled = false; //Fuzz score compares the users input against all translations of the original text simultaneously.
+let overlayUsed = false; //Check if overlay has been used on current guess
 
 //Turn fuzz on and off
 fuzzScore.addEventListener('change', () => {
@@ -76,27 +77,30 @@ userInput.addEventListener('input', () => {
         let overlay = document.getElementById('overlay');
         const rect = userInput.getBoundingClientRect();
 
-        // Set overlay dimensions and position to match the text area
-        overlay.style.width = `${rect.width}px`;
-        overlay.style.height = `${rect.height}px`;
-        overlay.style.top = `${userInput.offsetTop}px`;
-        overlay.style.left = `${userInput.offsetLeft}px`;
+        if(!overlayUsed) {
+            // Set overlay dimensions and position to match the text area
+            overlay.style.width = `${rect.width}px`;
+            overlay.style.height = `${rect.height}px`;
+            overlay.style.top = `${userInput.offsetTop}px`;
+            overlay.style.left = `${userInput.offsetLeft}px`;
 
-        // Display the overlay
-        overlay.style.display = "flex";
-        overlay.style.opacity = "1";
-        overlay.style.animation = "swipeLeft 3s forwards";
+            // Display the overlay
+            overlay.style.display = "flex";
+            overlay.style.opacity = "1";
+            overlay.style.animation = "swipeLeft 3s forwards";
 
-        // After the swipeLeft animation completes, start the fadeOut animation
-        setTimeout(() => {
-            overlay.style.animation = "fadeOut 2s forwards";
-        }, 3000); // Start fadeOut after 3s when swipeLeft completes
+            // After the swipeLeft animation completes, start the fadeOut animation
+            setTimeout(() => {
+                overlay.style.animation = "fadeOut 2s forwards";
+            }, 3000); // Start fadeOut after 3s when swipeLeft completes
 
-        // Hide the overlay after all animations are complete (5s total)
-        setTimeout(() => {
-            overlay.style.display = "none";
-        }, 5000); // Ensure this matches the total animation duration
+            // Hide the overlay after all animations are complete (5s total)
+            setTimeout(() => {
+                overlay.style.display = "none";
+            }, 5000); // Ensure this matches the total animation duration
 
+            overlayUsed = true; //Only show the overlay once per guess.
+        }
     }
 
     //Until user reaches a certain score, hide the verse and won display
@@ -108,10 +112,12 @@ userInput.addEventListener('input', () => {
     //If the current score is a 10th of the target score, turn color red
     if (currentScore < difficulty.value / 10){
         score.style.color = 'red';
+        overlayUsed = false; //Reset overlay if it is less than target
     }
     //Once user has reached halfway of target score turn yellow-ish
     else if (currentScore < difficulty.value / 2){
         score.style.color = 'darkorange';
+        overlayUsed = false; //Reset overlay if it is less than target
     }
 
 });
