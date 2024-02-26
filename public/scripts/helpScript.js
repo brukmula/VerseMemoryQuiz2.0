@@ -65,8 +65,8 @@ const helpWindowHTML = `
         <h4>Fuzz Switch</h4>
         <label for="helpToggle"><b>Fuzz Score</b></label> 
         <div id = "helpToggle" class="toggle">
-            <input type="checkbox" id="btn">
-            <label for="btn">
+            <input type="checkbox" id="btnHelp">
+            <label for="btnHelp">
                 <span class="thumb"></span>
             </label>
             <div class="light"></div>
