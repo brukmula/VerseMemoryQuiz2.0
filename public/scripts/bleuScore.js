@@ -1,3 +1,5 @@
+//This script handles the scoring system for the user's input compared to the selected text.
+
 const userInput = document.getElementById('userInput');
 const score = document.getElementById('score');
 const verse = document.getElementById('currentVerse');
@@ -13,7 +15,7 @@ let showCurrentScore = true; //Keep track of visibility of current score
 let currentScore = 0; //Score is 0 by default
 score.innerText = 'Score: ' + (currentScore) + '%';
 
-let fuzzEnabled = false;
+let fuzzEnabled = false; //Fuzz score compares the users input against all versions/translations of the original text simultaneously.
 
 //Turn fuzz on and off
 fuzzScore.addEventListener('change', () => {
@@ -99,12 +101,13 @@ userInput.addEventListener('input', () => {
 
 //When user hits score button
 scoreReveal.addEventListener('click', () => {
-    //
+    //Reveal Score
     if (score.style.display === 'none'){
         scoreReveal.innerText = 'Hide Score';
         showCurrentScore = true;
         score.style.display = 'block';
     }
+    //Hide score
     else {
         scoreReveal.innerText = 'Show Score';
         showCurrentScore = false;

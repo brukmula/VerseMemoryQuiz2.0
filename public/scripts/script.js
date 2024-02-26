@@ -102,6 +102,7 @@ versionSelect.addEventListener('change', () => {
 //When other paraphrase button is clicked, display the next paraphrase
 paraphraseButton.addEventListener('click', () => {
 
+    //Once the verse is loaded let the user scroll through paraphrases
     if(verseLoaded) {
         browseParaphrases();
         paraphraseDisplay.innerText = paraphrases[paraphraseIndex];

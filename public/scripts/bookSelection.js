@@ -1,9 +1,11 @@
+//This script handles fetching the verse,book and chapter information for the dropdown menus
 const bibleDataUrl = 'public/jsonFiles/bibleData.json';
 
 let bibleData = {}; // This will hold the JSON data once fetched
 let bookSelectButton = document.getElementById('bookSelect');
 let chapterSelectButton = document.getElementById('chapterSelect');
 
+//Get the data as soon as the window has been loaded.
 window.onload = function() {
     fetchBibleData();
 };

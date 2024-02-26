@@ -1,3 +1,5 @@
+//This script handles the "peek" window and button, also known as the "Review Verse" button.
+
 const peekButton = document.getElementById('peekButton');
 const peekWindow = document.getElementById('peekWindow');
 const peekVerse = document.getElementById('peekVerse');
@@ -32,8 +34,8 @@ peekButton.addEventListener('click', () => {
             const isClickInsidePeekWindow = peekWindow.contains(event.target) || peekButton.contains(event.target);
             if (!isClickInsidePeekWindow) {
                 peekWindow.style.display = 'none';
-                peekUsed = true; // Assuming you want to mark peek as used when the window is closed
-                // Optionally remove the listener if the window is not supposed to be reopened
+                peekUsed = true; //Mark as peek when the window is closed
+                // Remove the listener if the window is not supposed to be reopened
                 document.removeEventListener('click', this);
                 peekWindow.__peekWindowClickListenerAdded = false;
             }
