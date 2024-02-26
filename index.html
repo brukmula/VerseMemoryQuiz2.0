@@ -12,7 +12,10 @@
 <h1>Verse Memory Quiz</h1>
 <div class = "help">
     <!--Button that opens help window-->
-    <button id = "helpButton" onclick="openHelpWindow()">Instructions</button>
+    <button id = "helpButton" onclick="openHelpWindow()">
+        Instructions
+        <span class="tooltipText">Learn how to play.</span>
+    </button>
 </div>
 
 
@@ -67,7 +70,9 @@
             <span class="thumb"></span>
         </label>
         <div class="light"></div>
+        <span class="tooltipText">Check against all translations.</span>
     </div>
+
 
 </div>
 
@@ -77,7 +82,11 @@
     <div class="left">
         <p>
             <b class = "box_title">Meaning of Verse</b>
-            <button class = "button" id = "paraphraseButton">Other Expressions</button>
+            <button class = "button" id = "paraphraseButton">
+                Other Expressions
+                <span class="tooltipText">Scroll through all expressions of the verse.</span>
+            </button>
+
         </p>
         <p id = "paraphrase"></p>
     </div>
@@ -86,12 +95,17 @@
     <div class="right">
         <p>
             <b class = "box_title">Enter Your Answer</b>
-            <button class = "button" id = "scoreReveal">Hide Score</button>
+            <button class = "button" id = "scoreReveal">
+                Hide Score
+                <span class="tooltipText">Turn score display on and off</span>
+            </button>
+
         </p>
+
         <textarea style = "font-size: x-large" id = 'userInput'></textarea>
         <p  class = "score" id = "score"></p>
         <div id="overlay" class = "wonDisplay" >
-            <p id="overlayText" style="font-size:24px; text-align:center;">CORRECT!</p>
+            <p id="overlayText" class = "overlayText">CORRECT!</p>
         </div>
         <p id = "correct"></p>
     </div>
@@ -101,6 +115,9 @@
         <div>
             <p>
                 <b class = "box_title">Complete Verse</b>
+                <button class="button"> ?
+                    <span class="tooltipText">The complete verse will appear here once your score passes the difficulty level.</span>
+                </button>
             </p>
         </div>
 

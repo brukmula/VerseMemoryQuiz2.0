@@ -48,10 +48,6 @@ userInput.addEventListener('input', () => {
 
     const userAnswer = userInput.value.trim();
 
-    if(showCurrentScore) {
-        score.innerText = 'Score: ' + (currentScore) + '%';
-    }
-
     //If fuzz score is turned on check users answer against all translations instead of just one
     if(fuzzEnabled) {
         let highest = []
@@ -61,6 +57,7 @@ userInput.addEventListener('input', () => {
         });
 
         currentScore = Math.max(...highest);
+        score.innerText = 'Score: ' + (currentScore) + '%';
     }
 
     //Else if fuzz isn't enabled change calculate score normally
@@ -68,6 +65,7 @@ userInput.addEventListener('input', () => {
         //If input box isn't empty
         const similarity =  (calculateBLEUScore(userAnswer, verse.textContent));
         currentScore = similarity;
+        score.innerText = 'Score: ' + (currentScore) + '%';
     }
 
     //Set color to green once it has  reached goal and display correct screen
