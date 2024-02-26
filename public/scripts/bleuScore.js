@@ -70,7 +70,7 @@ userInput.addEventListener('input', () => {
         currentScore = similarity;
     }
 
-    //Set color to green once it has  reached
+    //Set color to green once it has  reached goal and display correct screen
     if(currentScore >= difficulty.value){
         verse.style.visibility = 'visible';
         score.style.color = 'darkgreen';
