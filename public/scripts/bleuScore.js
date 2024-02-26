@@ -15,7 +15,7 @@ let showCurrentScore = true; //Keep track of visibility of current score
 let currentScore = 0; //Score is 0 by default
 score.innerText = 'Score: ' + (currentScore) + '%';
 
-let fuzzEnabled = false; //Fuzz score compares the users input against all versions/translations of the original text simultaneously.
+let fuzzEnabled = false; //Fuzz score compares the users input against all translations of the original text simultaneously.
 
 //Turn fuzz on and off
 fuzzScore.addEventListener('change', () => {
@@ -177,5 +177,5 @@ function getNgrams(tokens,n){
 //Split the translated and reference texts into words
 function tokenize(text){
     //Remove punctuation and split into words
-    return text.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, "").toLowerCase().split('');
+    return text.replace(/[.,\/#!$%^&*;:{}=\-_`~()]/g, "").toLowerCase().split('');
 }

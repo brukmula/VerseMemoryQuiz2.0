@@ -115,11 +115,12 @@ h1 {
 }
 
 .helpWindow {
+    font-size: x-large;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     position: fixed;
     padding: 20px;
     background-color: #E0DFD5;
-    background-image: linear-gradient(to right, #f5f7fa 0%, #c3cfe2 100%);
+    background-image: linear-gradient(to right, #c3cfe2 0%, #c3cfe2 100%);
     color: #333;
     border: 1px solid #fff;
     border-radius: 8px; /* Rounded corners */
@@ -132,14 +133,20 @@ h1 {
     overflow: auto;
 }
 
-.helpWindow b {
+.helpWindow b{
     color: black;
-    padding: 0;
-    margin: 0;
-    align-content: normal;
 }
 
-.navbar select {
+.helpWindow select {
+    float: none;
+    display: block;
+    color: black;
+    padding: 14px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+.select {
     float: left;
     color: black;
     padding: 14px;
@@ -149,14 +156,14 @@ h1 {
 
 .left{
     grid-area: Left;
-    background-color: #fafafa; /* Lighter shade for a fresher look */
+    background-color: #fafafa;
     padding: 20px;
-    border: 1px solid #eaeaea; /* Softer border color */
+    border: 1px solid #eaeaea;
     display: flex;
     flex-direction: column;
-    /* Soft shadow for depth without being too intrusive */
+    /* Soft shadow */
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    border-radius: 8px; /* Increased radius for modernity */
+    border-radius: 8px;
 }
 .left p{
     font-size: large;
@@ -170,9 +177,9 @@ h1 {
     border: 1px solid #eaeaea;
     display: flex;
     flex-direction: column;
-    /* Soft shadow for depth without being too intrusive */
+    /* Soft shadow*/
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    border-radius: 8px; /* Increased radius for modernity */
+    border-radius: 8px;
 }
 
 
@@ -219,7 +226,7 @@ h1 {
 
 .peekWindow {
     display: none;
-    font-size: large;
+    font-size: x-large;
     font-weight: bold;
     position: fixed;
     padding: 20px;

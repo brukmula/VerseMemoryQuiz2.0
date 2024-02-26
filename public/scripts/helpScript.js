@@ -1,67 +1,109 @@
+//This script hold the HTML and logic for the "Instructions" window
 const helpWindowHTML = `
  <div id = "helpWindow" class ="helpWindow">
         <button id ="closeHelp">X</button>
         <p id = "helpText" class = "helpText"></p>
         <h1 class ="welcome">Welcome to Verse Memory Quiz!</h1>
-        <h3>This is a game designed to test Bible memory skills</h3>
+        <h3>This is a detailed set of introduction to the Bible Verse Memory Quiz Game.</h3>
 
-        <h2>How to play:</h2>
+        <h4>Getting Started</h4>
 
-        <p>To get started, enter your </p>
+        <p>Welcome to the Bible Verse Memory Quiz, an interactive game designed to test and improve your memory of Bible
+         verses. Here's how you can begin your journey into scripture memorization:
+        </p>
         
+        <h4>Selecting a Verse</h4>
+        <div>
+            
+        <p>
+            <label for="helpSelectBook"><b>Book: </b></label>
+            <select id = "helpSelectBook" class="select">
+                <option selected = "selected" hidden>Genesis</option>
+            </select>
+        </p>
+            <p>Start the game by choosing a book, chapter, and verse from the Bible that you wish to memorize or test yourself on. 
+            This might be a necessary step towards engaging with the Word in a deep and meaningful way.
+            </p>
+        </div>
 
-        <p>If you reach the target goal the verse will appear in the  <b>Completed Verse</b> box</p>
-
-        <p>The game can also be played in <b>Verse Reference</b> mode. In this mode the game will only display the verses
-        reference without displaying the paraphrases.
+        <h4>Understanding the Verse</h4>
+        <p>Upon selection, a paraphrased version of your chosen verse will appear in the Meaning of Verse box located on the left side of the screen. 
+        This paraphrase serves to provide you with an interpretation of the verse's message, reminding you of the content of the verse
+        while you  attempt to recall the exact wording.
+        </p>
+        
+        <p>Next to the Meaning of Verse text, is this button:  <button class="button"> Other Expressions</button> </p>
+        <p>
+        This button enables you to view alternative paraphrases of the selected verse. 
+        This feature helps you recall the meaning of the verse by interpreting the verse from multiple perspectives.
         </p>
 
+        <h4>Customizing Your Experience</h4>   
+        <p>To make your quiz experience more tailored and beneficial, consider the following customizable features</p>
+        
+        <h4>Difficulty Selection</h4>
+        <label for="helpSelectDifficulty"><b>Difficulty: </b></label>
+            <select id = "helpSelectDifficulty" class="select">
+                <option selected = selected hidden>50%</option>
+            </select>
+        
         <p>
-        <select class="dropdown">Select Difficulty
-            <option value = "none" selected = "selected" hidden>Select Difficulty</option>
+        This feature adjusts how much of the verse text you need to recall in order to complete the task.
+        The difficulty is gauged using a simplified concept similar to the accuracy measurement used in machine  translation, where your response is compared to the original text to determine similarity. 
+        The closer your recollection is to the original verse, the higher your score.
+        </p>
+        
+        <h4>Version Selection</h4>
+        <label for="helpSelectVersion"><b>Version:</b></label>
+        <select id = "helpSelectVersion" class="select">
+            <option selected = selected hidden>ESV</option>
         </select>
-           determines how much of the original verse you need to get right to win.
+        <p>Different translations of the Bible offer various interpretations and wordings of verses. 
+        Use this option to choose the version of the Bible you're most familiar with or wish to challenge yourself with.
         </p>
+        
+        <h4>Fuzz Switch</h4>
+        <label for="helpToggle"><b>Fuzz Score</b></label> 
+        <div id = "helpToggle" class="toggle">
+            <input type="checkbox" id="btn">
+            <label for="btn">
+                <span class="thumb"></span>
+            </label>
+            <div class="light"></div>
 
+        </div>
+        
+        <p> Activating this switch allows your answers to be checked against all available translations of the Bible.
+         This feature is particularly useful if you're recalling a verse from a different translation than the one selected, ensuring you're not penalized for version-specific wording differences.
+        </p>
+        
+        <h3>Engaging with the Quiz</h3>
+        <h4>As you dive into the memory quiz, here's what to expect:</h4>
+        
+        <h4>Entering Your Answer</h4>
+        <p>The "Enter Your Answer" box on the right side of the screen is where you'll type what you believe the original verse says.
+        As you input your answer, you'll notice your score fluctuating. 
+        The score increases with the correct amount of your recollection, providing feedback to your progress for encouragement.
+        </p>
+        
+        <h4>Reviewing the Verse</h4>
+        <p>If you need a refresher before starting, the <button class="peekButton" style="float: none">Review Verse</button> button at the top of the screen, adjacent to the verse selection in the navigation bar, allows a sneak peek at the verse.
+         Be mindful that once you begin typing your answer, the ability to view the verse again is restricted to ensure a fair challenge.
+        </p>
+        
+        <h4>Score Visibility</h4>
         <p>
-        <select class ="dropdown">
-            <option value="none" selected="selected" hidden>Select Version</option>
-        </select>
-         lets you choose which translation you want to use.</p>
-
-        <p><button class="helpOtherButtons">Check Verse</button>
-            let's you check the original verse. (one use per verse)
+        The <button class ="button">Hide/Show Score</button> button lets you toggle the visibility of your score. 
+        This option allows you to focus on recall without the pressure of a live score or, conversely, to monitor your progress in real-time.
         </p>
-        <p><button  class="helpOtherButtons">New Verse</button>
-            generates a new verse for you.
-        </p>
-
+        
+        <h4>Achieving Correctness</h4>
         <p>
-            <button class="helpOtherButtons">Change Game Mode</button>
-            changes the game from <b>Paraphrase</b> mode to <b>Verse Reference</b> mode and vice versa.
-            This button can be used at any time without changing the score, even in the middle of a guess or
-            after pressing check verse.
+        The difficulty level you've chosen dictates the score threshold for a correct answer. 
+        Upon reaching the required score, a congratulatory message of "Correct!" is displayed, followed by the revelation of the complete verse at the bottom of the screen under "Complete Verse."
         </p>
-
-        <p>
-            <button class="helpOtherButtons">Themes</button>
-            will display hints when in <b>Verse Reference</b>, mode specifically themes from the verse.
-        </p>
-
-        <p>
-            <button class="helpOtherButtons">Other Paraphrases</button>
-            lets you cycle through different paraphrases of selected verse.
-        </p>
-
-        <p>
-            <button class="helpOtherButtons">Themes</button>
-            displays hints when the user has selected Verse Reference Mode. Specifically themes from each verse.
-        </p>
-
-        <p>
-            <button class="helpOtherButtons">Hide Score</button>
-            lets you see your score as you type, click to turn on or off.
-        </p>
+           
+        
    </div>`;
 
 //Triggered when help button is clicked
