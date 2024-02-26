@@ -9,7 +9,6 @@ const fuzzScore = document.getElementById('btn');
 const wonDisplay = document.getElementById('correct');
 const verseSelection = document.getElementById('verseSelect');
 
-
 let versions = ['esv','niv', 'kjv','nlt','net']; //Array of all Bible translations
 let showCurrentScore = true; //Keep track of visibility of current score
 let currentScore = 0; //Score is 0 by default
@@ -75,11 +74,26 @@ userInput.addEventListener('input', () => {
     if(currentScore >= difficulty.value){
         verse.style.visibility = 'visible';
         score.style.color = 'darkgreen';
-        //Show the player that they won
-        wonDisplay.innerText = 'Correct!'
-        wonDisplay.style.fontWeight = 'bold;'
-        wonDisplay.style.visibility = 'visible';
-        wonDisplay.style.fontSize = 'x-large';
+
+        let overlay = document.getElementById('overlay');
+        const rect = userInput.getBoundingClientRect();
+
+        // Set overlay dimensions and position to match the text area
+        overlay.style.width = `${rect.width}px`;
+        overlay.style.height = `${rect.height}px`;
+        overlay.style.top = `${userInput.offsetTop}px`;
+        overlay.style.left = `${userInput.offsetLeft}px`;
+
+        // Display the overlay
+        overlay.style.display = "flex";
+        overlay.style.opacity = "1";
+        overlay.style.animation = "swipeLeft 3s forwards, fadeOut 2s 2s backwards";
+
+        // Hide the overlay after the animation is complete (4s total in this example)
+        setTimeout(function() {
+            overlay.style.display = "none";
+        }, 4000);
+
     }
 
     //Until user reaches a certain score, hide the verse and won display

@@ -4,9 +4,24 @@ body, html {
     font-family: Yu Gothic;
 }
 
+@keyframes swipeRight {
+    from {
+        transform: translateX(-100%);
+    }
+    to {
+        transform: translateX(0%);
+    }
+}
+
 @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
+}
+
+@keyframes fadeOut {
+    to {
+        opacity: 0;
+    }
 }
 
 h1 {
@@ -116,7 +131,7 @@ h1 {
 
 .helpWindow {
     font-size: x-large;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Yu Gothic' , sans-serif;
     position: fixed;
     padding: 20px;
     background-color: #E0DFD5;
@@ -269,6 +284,18 @@ h1 {
 
 .score {
     font-weight: bold;
+}
+
+.wonDisplay{
+    display: none;
+    position:absolute;
+    background-color:green;
+    color:white;;
+    align-items:center;
+    justify-content:center;
+    opacity:0;
+    font-size: 24px;
+    text-align: center;
 }
 
 .verseDisplay {
