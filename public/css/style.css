@@ -4,12 +4,14 @@ body, html {
     font-family: Yu Gothic;
 }
 
-@keyframes swipeRight {
+@keyframes swipeLeft {
     from {
-        transform: translateX(-100%);
+        transform: translateX(50%);
+        opacity: 0;
     }
     to {
         transform: translateX(0%);
+        opacity: 1;
     }
 }
 

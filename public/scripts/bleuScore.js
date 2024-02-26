@@ -87,12 +87,17 @@ userInput.addEventListener('input', () => {
         // Display the overlay
         overlay.style.display = "flex";
         overlay.style.opacity = "1";
-        overlay.style.animation = "swipeLeft 3s forwards, fadeOut 2s 2s backwards";
+        overlay.style.animation = "swipeLeft 3s forwards";
 
-        // Hide the overlay after the animation is complete (4s total in this example)
-        setTimeout(function() {
+        // After the swipeLeft animation completes, start the fadeOut animation
+        setTimeout(() => {
+            overlay.style.animation = "fadeOut 2s forwards";
+        }, 3000); // Start fadeOut after 3s when swipeLeft completes
+
+        // Hide the overlay after all animations are complete (5s total)
+        setTimeout(() => {
             overlay.style.display = "none";
-        }, 4000);
+        }, 5000); // Ensure this matches the total animation duration
 
     }
 
