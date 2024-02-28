@@ -1,6 +1,8 @@
 # Bible Verse Memory Quiz
 Welcome to the Bible Verse Memory Quiz! This interactive game is designed to test and improve your memory of Bible verses in a fun and engaging way. Below are instructions to help you get started and make the most out of your quiz experience.
 
+You can access it here: https://versememoryquiz.firebaseapp.com/
+
 ### Getting Started
 First, choose a book, chapter, and verse from the Bible that you want to memorize or test yourself on. This selection is your first step towards engaging with the Word in a meaningful way.
 
