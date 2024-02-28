@@ -1,89 +1,151 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Welcome to Firebase Hosting</title>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Verse Memory Quiz</title>
+  <link rel = "stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/toggle.css">
+</head>
+<body>
 
-    <!-- update the version number as needed -->
-    <script defer src="/__/firebase/10.8.0/firebase-app-compat.js"></script>
-    <!-- include only the Firebase features as you need -->
-    <script defer src="/__/firebase/10.8.0/firebase-auth-compat.js"></script>
-    <script defer src="/__/firebase/10.8.0/firebase-database-compat.js"></script>
-    <script defer src="/__/firebase/10.8.0/firebase-firestore-compat.js"></script>
-    <script defer src="/__/firebase/10.8.0/firebase-functions-compat.js"></script>
-    <script defer src="/__/firebase/10.8.0/firebase-messaging-compat.js"></script>
-    <script defer src="/__/firebase/10.8.0/firebase-storage-compat.js"></script>
-    <script defer src="/__/firebase/10.8.0/firebase-analytics-compat.js"></script>
-    <script defer src="/__/firebase/10.8.0/firebase-remote-config-compat.js"></script>
-    <script defer src="/__/firebase/10.8.0/firebase-performance-compat.js"></script>
-    <!-- 
-      initialize the SDK after all desired features are loaded, set useEmulator to false
-      to avoid connecting the SDK to running emulators.
-    -->
-    <script defer src="/__/firebase/init.js?useEmulator=true"></script>
+<h1>Verse Memory Quiz</h1>
+<div class = "help">
+  <!--Button that opens help window-->
+  <button id = "helpButton" onclick="openHelpWindow()">
+    Instructions
+    <span class="tooltipText">Learn how to play.</span>
+  </button>
+</div>
 
-    <style media="screen">
-      body { background: #ECEFF1; color: rgba(0,0,0,0.87); font-family: Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; }
-      #message { background: white; max-width: 360px; margin: 100px auto 16px; padding: 32px 24px; border-radius: 3px; }
-      #message h2 { color: #ffa100; font-weight: bold; font-size: 16px; margin: 0 0 8px; }
-      #message h1 { font-size: 22px; font-weight: 300; color: rgba(0,0,0,0.6); margin: 0 0 16px;}
-      #message p { line-height: 140%; margin: 16px 0 24px; font-size: 14px; }
-      #message a { display: block; text-align: center; background: #039be5; text-transform: uppercase; text-decoration: none; color: white; padding: 16px; border-radius: 4px; }
-      #message, #message a { box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); }
-      #load { color: rgba(0,0,0,0.4); text-align: center; font-size: 13px; }
-      @media (max-width: 600px) {
-        body, #message { margin-top: 0; background: white; box-shadow: none; }
-        body { border-top: 16px solid #ffa100; }
-      }
-    </style>
-  </head>
-  <body>
-    <div id="message">
-      <h2>Welcome</h2>
-      <h1>Firebase Hosting Setup Complete</h1>
-      <p>You're seeing this because you've successfully setup Firebase Hosting. Now it's time to go build something extraordinary!</p>
-      <a target="_blank" href="https://firebase.google.com/docs/hosting/">Open Hosting Documentation</a>
+
+<!--Navigation Bar-->
+<div class="navbar">
+  <!-- Dropdown for selecting a book -->
+  <label for="bookSelect"><b>Book: </b></label>
+
+  <select class="select" id="bookSelect" onchange="populateBooks()">
+    <!-- Options will be added here dynamically -->
+  </select>
+
+  <!-- Dropdown for selecting a chapter -->
+  <select class="select" id="chapterSelect" style= "visibility: hidden">
+    <!-- Options will be added here dynamically -->
+  </select>
+
+  <!-- Dropdown for selecting a verse -->
+  <select class="select" id="verseSelect" style="visibility: hidden">
+    <!-- Options will be added here dynamically -->
+  </select>
+
+  <!-- Button to let user look at Verse -->
+  <button id = "peekButton" class = "peekButton">Review Verse</button>
+
+  <!--Select Difficulty and Version-->
+  <label for = "difficulty"><b>Difficulty</b>  </label>
+  <select class="select" id = "difficulty">
+    <option value = "100">100%</option>
+    <option value = "75">75%</option>
+    <option selected = "selected" value = "50">50%</option>
+    <option value = "25">25%</option>
+    <option value = "10">10%</option>
+  </select>
+
+  <!--Dropdown for version selection-->
+  <label for ="versionSelect"><b>Version:</b></label>
+  <select class="select" id = "versionSelect">
+    <option value = "esv" >ESV</option>
+    <option value = "kjv">KJV</option>
+    <option value = "net">NET</option>
+    <option value = "niv">NIV</option>
+    <option value = "nlt">NLT</option>
+  </select>
+
+
+  <!-- Switch that controls fuzz score -->
+  <b>Fuzz Score</b>
+  <div id = "toggle" class="toggle">
+    <input type="checkbox" id="btn">
+    <label for="btn">
+      <span class="thumb"></span>
+    </label>
+    <div class="light"></div>
+    <span class="tooltipText">Check against all translations.</span>
+  </div>
+
+
+</div>
+
+<!--Game area-->
+<div class="container">
+  <!-- This is where the paraphrases appear-->
+  <div class="left">
+    <p>
+      <b class = "box_title">Meaning of Verse</b>
+      <button class = "button" id = "paraphraseButton">
+        Other Expressions
+        <span class="tooltipText">Scroll through all expressions of the verse.</span>
+      </button>
+
+    </p>
+    <p id = "paraphrase"></p>
+  </div>
+
+  <!-- This is where the user enters their answer-->
+  <div class="right">
+    <p>
+      <b class = "box_title">Enter Your Answer</b>
+      <button class = "button" id = "scoreReveal">
+        Hide Score
+        <span class="tooltipText">Turn score display on and off</span>
+      </button>
+
+    </p>
+
+    <textarea style = "font-size: x-large" id = 'userInput'></textarea>
+    <p  class = "score" id = "score"></p>
+    <div id="overlay" class = "wonDisplay" >
+      <p id="overlayText" class = "overlayText">CORRECT!</p>
     </div>
-    <p id="load">Firebase SDK Loading&hellip;</p>
+    <p id = "correct"></p>
+  </div>
 
-    <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        const loadEl = document.querySelector('#load');
-        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
-        // // The Firebase SDK is initialized and available here!
-        //
-        // firebase.auth().onAuthStateChanged(user => { });
-        // firebase.database().ref('/path/to/ref').on('value', snapshot => { });
-        // firebase.firestore().doc('/foo/bar').get().then(() => { });
-        // firebase.functions().httpsCallable('yourFunction')().then(() => { });
-        // firebase.messaging().requestPermission().then(() => { });
-        // firebase.storage().ref('/path/to/ref').getDownloadURL().then(() => { });
-        // firebase.analytics(); // call to activate
-        // firebase.analytics().logEvent('tutorial_completed');
-        // firebase.performance(); // call to activate
-        //
-        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+  <!--Div for verse to appear once user has reached goal-->
+  <div class="bottom">
+    <div>
+      <p>
+        <b class = "box_title">Complete Verse</b>
+        <button class="button"> ?
+          <span class="tooltipText">The complete verse will appear here once your score passes the difficulty level.</span>
+        </button>
+      </p>
+    </div>
 
-        try {
-          let app = firebase.app();
-          let features = [
-            'auth', 
-            'database', 
-            'firestore',
-            'functions',
-            'messaging', 
-            'storage', 
-            'analytics', 
-            'remoteConfig',
-            'performance',
-          ].filter(feature => typeof app[feature] === 'function');
-          loadEl.textContent = `Firebase SDK loaded with ${features.join(', ')}`;
-        } catch (e) {
-          console.error(e);
-          loadEl.textContent = 'Error loading the Firebase SDK, check the console.';
-        }
-      });
-    </script>
-  </body>
+    <div>
+      <p class = "verseDisplay" style="visibility: hidden" id = "currentVerse"> </p>
+    </div>
+
+  </div>
+
+</div>
+
+<!-- Peek Window-->
+<div class = "peekWindow" id = "peekWindow">
+  <button id="closePeek" class = "closePeek">X</button>
+  <p id = "peekVerse">Select a verse to begin</p>
+</div>
+
+<!-- Help Window-->
+<div style="display: none" class = "helpWindow" id = "helpWindow">
+  <p></p>
+  <h1 class ="welcome">Welcome to Verse Memory Quiz!</h1>
+</div>
+
+<!--Import all the scripts-->
+<script src= "scripts/bookSelection.js"></script>
+<script src = "scripts/script.js"></script>
+<script src="scripts/bleuScore.js"></script>
+<script src="scripts/helpScript.js"></script>
+<script src="scripts/peek.js"></script>
+</body>
 </html>
