@@ -1,5 +1,6 @@
 //This script handles fetching the verse,book and chapter information for the dropdown menus
 const bibleDataUrl = '/jsonFiles/bibleData.json';
+const chineseBibleDataUrl = '/json/chineseBibleData.json';
 
 let bibleData = {}; // This will hold the JSON data once fetched
 let bookSelectButton = document.getElementById('bookSelect');
@@ -12,7 +13,15 @@ window.onload = function() {
 
 async function fetchBibleData() {
     try {
-        const response = await fetch(bibleDataUrl);
+        let response;
+        //Load books based on which language is selected
+        if(languageSelector.value === 'eng'){
+            response = await fetch(bibleDataUrl);
+        }
+        else if(languageSelector.value === 'zho'){
+            response = await fetch(chineseBibleDataUrl);
+        }
+
         bibleData = await response.json();
         populateBooks();
     } catch (error) {
