@@ -4,17 +4,16 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Verse Memory Quiz</title>
-  <link rel = "stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/toggle.css">
+  <link rel = "stylesheet" href="public/css/style.css">
+  <link rel="stylesheet" href="public/css/toggle.css">
 </head>
 <body>
 
-<h1>Verse Memory Quiz</h1>
+<h1 id = "logo">Verse Memory Quiz</h1>
 <div class = "help">
   <!--Button that opens help window-->
   <button id = "helpButton" onclick="openHelpWindow()">
     Instructions
-    <span class="tooltipText">Learn how to play.</span>
   </button>
 </div>
 
@@ -22,7 +21,7 @@
 <!--Navigation Bar-->
 <div class="navbar">
   <!-- Dropdown for selecting a book -->
-  <label for="bookSelect"><b>Book: </b></label>
+  <label  for="bookSelect"><b id = "bookSelectLabel">Book: </b></label>
 
   <select class="select" id="bookSelect" onchange="populateBooks()">
     <!-- Options will be added here dynamically -->
@@ -42,7 +41,7 @@
   <button id = "peekButton" class = "peekButton">Review Verse</button>
 
   <!--Select Difficulty and Version-->
-  <label for = "difficulty"><b>Difficulty</b>  </label>
+  <label for = "difficulty"><b id="difficultyLabel">Difficulty:</b>  </label>
   <select class="select" id = "difficulty">
     <option value = "100">100%</option>
     <option value = "75">75%</option>
@@ -52,7 +51,7 @@
   </select>
 
   <!--Dropdown for version selection-->
-  <label for ="versionSelect"><b>Version:</b></label>
+  <label for ="versionSelect"><b id = "versionLabel">Version:</b></label>
   <select class="select" id = "versionSelect">
     <option value = "esv" >ESV</option>
     <option value = "kjv">KJV</option>
@@ -61,9 +60,16 @@
     <option value = "nlt">NLT</option>
   </select>
 
+  <!--Dropdown for language selection-->
+  <label for ="languageSelect"><b>Language: </b></label>
+  <select class="select" id = "languageSelect">
+    <option value="eng" selected = selected>English </option>
+    <option value="zho">中文</option>
+  </select>
+
 
   <!-- Switch that controls fuzz score -->
-  <b>Fuzz Score</b>
+  <b id = "fuzzLabel">Fuzz Score</b>
   <div id = "toggle" class="toggle">
     <input type="checkbox" id="btn">
     <label for="btn">
@@ -81,7 +87,7 @@
   <!-- This is where the paraphrases appear-->
   <div class="left">
     <p>
-      <b class = "box_title">Meaning of Verse</b>
+      <b id ="paraphraseTitle" class = "box_title">Meaning of Verse</b>
       <button class = "button" id = "paraphraseButton">
         Other Expressions
         <span class="tooltipText">Scroll through all expressions of the verse.</span>
@@ -94,7 +100,7 @@
   <!-- This is where the user enters their answer-->
   <div class="right">
     <p>
-      <b class = "box_title">Enter Your Answer</b>
+      <b id = "answerTitle" class = "box_title">Enter Your Answer</b>
       <button class = "button" id = "scoreReveal">
         Hide Score
         <span class="tooltipText">Turn score display on and off</span>
@@ -114,9 +120,9 @@
   <div class="bottom">
     <div>
       <p>
-        <b class = "box_title">Complete Verse</b>
+        <b id = "completedVerseTitle" class = "box_title">Complete Verse</b>
         <button class="button"> ?
-          <span class="tooltipText">The complete verse will appear here once your score passes the difficulty level.</span>
+          <span id = "completedVerseContent" class="tooltipText">The complete verse will appear here once your score passes the difficulty level.</span>
         </button>
       </p>
     </div>
@@ -147,5 +153,6 @@
 <script src="scripts/bleuScore.js"></script>
 <script src="scripts/helpScript.js"></script>
 <script src="scripts/peek.js"></script>
+<script src="scripts/languageSelect.js"></script>
 </body>
 </html>
