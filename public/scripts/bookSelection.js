@@ -11,6 +11,11 @@ window.onload = function() {
     fetchBibleData();
 };
 
+//Load Bible Data again if language is changed
+languageSelector.addEventListener('change', () => {
+    fetchBibleData();
+});
+
 async function fetchBibleData() {
     try {
         let response;
