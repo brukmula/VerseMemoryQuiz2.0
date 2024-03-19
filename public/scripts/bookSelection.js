@@ -1,5 +1,5 @@
 //This script handles fetching the verse,book and chapter information for the dropdown menus
-const bibleDataUrl = '/jsonFiles/bibleData.json';
+const bibleDataUrl = '/json/chineseBibleData.json';
 const chineseBibleDataUrl = '/json/chineseBibleData.json';
 
 let bibleData = {}; // This will hold the JSON data once fetched
@@ -14,6 +14,7 @@ window.onload = function() {
 //Load Bible Data again if language is changed
 languageSelector.addEventListener('change', () => {
     fetchBibleData();
+    console.log()
 });
 
 async function fetchBibleData() {
