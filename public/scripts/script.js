@@ -92,6 +92,7 @@ verseSelect.addEventListener('change', () => {
 //Wait for user to change the difficulty
 difficultySelect.addEventListener('change',() => {
     currentDifficulty = parseInt(difficultySelect.value);
+    overlayUsed = false;
 });
 
 //Wait for user to select a version
