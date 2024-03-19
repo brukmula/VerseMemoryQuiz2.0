@@ -11,9 +11,22 @@ window.onload = function() {
     fetchBibleData();
 };
 
+//Load Bible Data again if language is changed
+languageSelector.addEventListener('change', () => {
+    fetchBibleData();
+});
+
 async function fetchBibleData() {
     try {
-        const response =  await fetch(bibleDataUrl);
+        let response;
+        //Load books based on which language is selected
+        if(languageSelector.value === 'eng'){
+            response = await fetch(bibleDataUrl);
+        }
+        else if(languageSelector.value === 'zho'){
+            response = await fetch(chineseBibleDataUrl);
+        }
+
         bibleData = await response.json();
         populateBooks();
     } catch (error) {
