@@ -1,32 +1,37 @@
 //This script handles fetching the verse,book and chapter information for the dropdown menus
 const bibleDataUrl = '/jsonFiles/bibleData.json';
-const chineseBibleDataUrl = '/json/chineseBibleData.json';
+const chineseBibleDataUrl = '/jsonFiles/chineseBibleData.json';
 
 let bibleData = {}; // This will hold the JSON data once fetched
 let bookSelectButton = document.getElementById('bookSelect');
 let chapterSelectButton = document.getElementById('chapterSelect');
+
+let currentLanguage = document.getElementById('languageSelect');
 
 //Get the data as soon as the window has been loaded.
 window.onload = function() {
     fetchBibleData();
 };
 
-//Load Bible Data again if language is changed
-languageSelector.addEventListener('change', () => {
-    console.log(languageSelector.value);
+currentLanguage.addEventListener('change', () => {
+    //Check which language is selected
+
     fetchBibleData();
-    console.log(languageSelector.value)
-});
+})
 
 async function fetchBibleData() {
     try {
+        bibleData = {}; //Clear Bible data
+
         let response;
-        //Load books based on which language is selected
-        if(languageSelector.value === 'eng'){
+        // Load books based on which language is selected
+        if (currentLanguage.value === 'eng') {
             response = await fetch(bibleDataUrl);
-        }
-        else if(languageSelector.value === 'zho'){
+        } else if (currentLanguage.value === 'zho') {
             response = await fetch(chineseBibleDataUrl);
+        } else {
+            console.error('Unknown language selection');
+            return; // Stop the function if the selected language is not supported
         }
 
         bibleData = await response.json();
@@ -38,7 +43,14 @@ async function fetchBibleData() {
 
 //Call JSON file with Bible information and fetch book names
 function populateBooks() {
+
     const bookSelect = document.getElementById('bookSelect');
+
+    // Clear the existing options in the bookSelect dropdown
+    while (bookSelect.options.length > 0) {
+        bookSelect.remove(0);
+    }
+
     chapterSelect.innerHTML = '<option selected = "selected" hidden>Select a Book</option>';
     bibleData.books.forEach(book => {
         const option = new Option(book.bookName, book.bookName);
