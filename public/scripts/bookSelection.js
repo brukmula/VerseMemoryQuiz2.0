@@ -16,6 +16,31 @@ window.onload = function() {
 currentLanguage.addEventListener('change', () => {
     //Call the fetch function to get all the names of the books
     fetchBibleData();
+
+
+    //Reveal Score
+    if (score.style.display === 'none'){
+        if(currentLanguage.value === "zho"){
+            scoreReveal.innerText = '不显示得分';
+            console.log("不显示得分");
+        }
+        else {
+            scoreReveal.innerText = 'Hide Score';
+        }
+        showCurrentScore = true;
+        score.style.display = 'block';
+    }
+    //Hide score
+    else {
+        if(currentLanguage.value === "zho"){
+            scoreReveal.innerText = ' 显示得分';
+        }
+        else {
+            scoreReveal.innerText = 'Show Score';
+        }
+        showCurrentScore = false;
+        score.style.display = 'none';
+    }
 })
 
 async function fetchBibleData() {

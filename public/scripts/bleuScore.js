@@ -126,13 +126,24 @@ userInput.addEventListener('input', () => {
 scoreReveal.addEventListener('click', () => {
     //Reveal Score
     if (score.style.display === 'none'){
-        scoreReveal.innerText = 'Hide Score';
+        if(currentLanguage.value === "zho"){
+            scoreReveal.innerText = '不显示得分';
+            console.log("不显示得分");
+        }
+        else {
+            scoreReveal.innerText = 'Hide Score';
+        }
         showCurrentScore = true;
         score.style.display = 'block';
     }
     //Hide score
     else {
-        scoreReveal.innerText = 'Show Score';
+        if(currentLanguage.value === "zho"){
+            scoreReveal.innerText = ' 显示得分';
+        }
+        else {
+            scoreReveal.innerText = 'Show Score';
+        }
         showCurrentScore = false;
         score.style.display = 'none';
     }

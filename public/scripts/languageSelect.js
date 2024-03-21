@@ -1,6 +1,7 @@
 //This script changes the interface language of the document
 // Dev note: Not all variable are declared in this file. Variables are shared from script.js
 const languageSelector = document.getElementById('languageSelect');
+const languageSelectLabel = document.getElementById('languageSelectLabel');
 const logo = document.getElementById('logo');
 const helpButton = document.getElementById('helpButton');
 const bookSelectLabel = document.getElementById('bookSelectLabel');
@@ -34,26 +35,44 @@ function english(){
     difficultyLabel.innerText = 'Difficulty:';
     versionLabel.innerText = 'Version:'
     peekButton.innerText = "Review Verse";
+    languageSelectLabel.innerText = "Language: ";
     fuzzLabel.innerText = "Fuzz Score";
     paraphraseTitle.innerText = "Meaning of Verse";
     paraphraseButton.innerText = "Other Expressions";
     answerTitle.innerText = 'Enter Your Answer';
     overlayText.innerText = 'CORRECT!'
     completedVerseTitle.innerText = "Complete Verse";
+
+    //Depending on what user wants to see
+    if (score.style.display === 'none') {
+        scoreReveal.innerText = 'Hide Score';
+    }
+    else {
+        scoreReveal.innerText = 'Show Score';
+    }
 }
 
 //If current language is chinese
 function chinese(){
     logo.innerText = '圣经经文记忆测验';
-    helpButton.innerText = '指示';
+    helpButton.innerText = ' 操作指南';
     bookSelectLabel.innerText = "书";
     peekButton.innerText = "复习经文";
+    languageSelectLabel.innerText = "选择语言: ";
     fuzzLabel.innerText = "模糊匹配";
     difficultyLabel.innerText = '选择难度';
     versionLabel.innerText = "选择版本";
     paraphraseTitle.innerText = "经文内容";
     paraphraseButton.innerText = "其他释义";
-    answerTitle.innerText = "输入您的答案 (猜完后按空格键)";
+    answerTitle.innerText = "输入您的答案";
     overlayText.innerText = "正确的！";
     completedVerseTitle.innerText = "完整经文";
+
+    //Depending on what user wants to see
+    if (score.style.display === 'none') {
+        scoreReveal.innerText = '不显示得分';
+    }
+    else {
+        scoreReveal.innerText = '显示得分';
+    }
 }
