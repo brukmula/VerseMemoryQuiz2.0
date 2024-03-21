@@ -16,6 +16,7 @@ window.onload = function() {
 currentLanguage.addEventListener('change', () => {
     //Call the fetch function to get all the names of the books
     fetchBibleData();
+    //Change the dropdown for versions
     changeVersionSelect();
 })
 

@@ -10,7 +10,6 @@ const wonDisplay = document.getElementById('correct');
 const verseSelection = document.getElementById('verseSelect');
 
 let versions = ['esv','niv', 'kjv','nlt','net']; //Array of all Bible translations
-let chineseVersion = ['cnvs', 'csbs', ]
 let showCurrentScore = true; //Keep track of visibility of current score
 let currentScore = 0; //Score is 0 by default
 score.innerText = 'Score: ' + (currentScore) + '%';
