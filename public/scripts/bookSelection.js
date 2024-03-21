@@ -5,7 +5,7 @@ const chineseBibleDataUrl = '/jsonFiles/chineseBibleData.json';
 let bibleData = {}; // This will hold the JSON data once fetched
 let bookSelectButton = document.getElementById('bookSelect');
 let chapterSelectButton = document.getElementById('chapterSelect');
-
+let select = document.getElementById("versionSelect");
 let currentLanguage = document.getElementById('languageSelect');
 
 //Get the data as soon as the window has been loaded.
@@ -16,7 +16,42 @@ window.onload = function() {
 currentLanguage.addEventListener('change', () => {
     //Call the fetch function to get all the names of the books
     fetchBibleData();
+    changeVersionSelect();
 })
+
+//When the user changes the language change the version selected
+function changeVersionSelect(){
+    //Clear existing options
+    select.innerHTML = "";
+
+    // Reload English versions by default
+    let versions = [
+        { value: "esv", text: "ESV" },
+        { value: "kjv", text: "KJV" },
+        { value: "net", text: "NET" },
+        { value: "niv", text: "NIV"},
+        { value: "nlt", text: "NLT"},
+    ];
+
+    //If different language is selected write new versions
+    if(currentLanguage.value === "zho"){
+        // Define new options
+        versions = [
+            { value: "cnvs", text: "新译本" },
+            { value: "csbs", text: "中文标准译本" },
+            { value: "tcvs", text: "現代中文譯本" },
+            { value: "cunps", text: "新标点和合本, 上帝版"},
+            { value: "rcuv", text: "圣经，和合本修订版"},
+        ];
+    }
+
+    // Add new options
+    versions.forEach(function(version) {
+        var option = new Option(version.text, version.value);
+        select.add(option);
+    });
+
+}
 
 async function fetchBibleData() {
     try {
