@@ -25,6 +25,7 @@ async function loadParaphraseData() {
     try {
         const response = await fetch(paraphrasesRef);
         const data = await response.json();
+
         // Assuming the JSON structure matches your needs directly
         paraphraseData = data;
     } catch (error) {
