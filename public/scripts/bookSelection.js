@@ -14,8 +14,7 @@ window.onload = function() {
 };
 
 currentLanguage.addEventListener('change', () => {
-    //Check which language is selected
-
+    //Call the fetch function to get all the names of the books
     fetchBibleData();
 })
 
@@ -51,7 +50,6 @@ function populateBooks() {
         bookSelect.remove(0);
     }
 
-    chapterSelect.innerHTML = '<option selected = "selected" hidden>Select a Book</option>';
     bibleData.books.forEach(book => {
         const option = new Option(book.bookName, book.bookName);
         bookSelect.options.add(option);
@@ -64,7 +62,17 @@ bookSelectButton.addEventListener('click', () => {
     const bookSelect = document.getElementById('bookSelect');
     const chapterSelect = document.getElementById('chapterSelect');
     chapterSelect.style.visibility = 'visible';
-    chapterSelect.innerHTML = '<option selected = "selected" hidden>Chapter</option>'; // Reset chapter dropdown
+
+    //Change the "Chapter" text based on current language
+    if(currentLanguage.value === "zho"){
+        chapterSelect.innerHTML = '<option selected = "selected" hidden>章节</option>'; // Reset chapter dropdown
+    }
+
+    else {
+        chapterSelect.innerHTML = '<option selected = "selected" hidden>Chapter</option>'; // Reset chapter dropdown
+    }
+
+
     const selectedBook = bibleData.books.find(book => book.bookName === bookSelect.value);
     if (selectedBook) {
         selectedBook.chapters.forEach(chapter => {
@@ -83,7 +91,15 @@ chapterSelectButton.addEventListener('change', () => {
     //Show verse select
     verseSelect.style.visibility = 'visible';
 
-    verseSelect.innerHTML = '<option  selected = "selected" hidden>Verse</option>'; // Reset verse dropdown
+    //Change the "Verse" text based on current language
+    if(currentLanguage.value === "zho"){
+        verseSelect.innerHTML = '<option  selected = "selected" hidden>圣经</option>'; // Reset verse dropdown
+    }
+
+    else {
+        verseSelect.innerHTML = '<option  selected = "selected" hidden>Verse</option>'; // Reset verse dropdown
+    }
+
     const selectedBook = bibleData.books.find(book => book.bookName === bookSelect.value);
     if (selectedBook) {
         const selectedChapter = selectedBook.chapters.find(chapter => chapter.chapter === parseInt(chapterSelect.value));
