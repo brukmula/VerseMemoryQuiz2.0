@@ -50,6 +50,27 @@ function english(){
     else {
         scoreReveal.innerText = 'Show Score';
     }
+
+    //Change Dropdown menu to English Versions of the Bible
+    const englishVersions = [
+        {value: 'esv', text: 'ESV'},
+        {value: 'kjv', text: 'KJV'},
+        {value: 'net', text: 'NET'},
+        {value: 'niv', text: 'NIV'},
+        {value: 'nlt', text: 'NLT'},
+    ];
+
+    //Clear previous options
+    versionSelect.innerHTML = '';
+
+    //Populate Select with new options
+    englishVersions.forEach(option =>{
+        const newOption = document.createElement('option');
+        newOption.value= option.value;
+        newOption.textContent = option.text;
+        versionSelect.appendChild(newOption);
+    });
+
 }
 
 //If current language is chinese
@@ -75,4 +96,25 @@ function chinese(){
     else {
         scoreReveal.innerText = '显示得分';
     }
+
+    //Change dropdown menu to Chinese versions of the Bible
+    //Change Dropdown menu to English Versions of the Bible
+    const chineseVersions = [
+        {value: 'cuv', text: '和合本'},
+        {value: 'rcuv', text: '和修本'},
+        {value: 'cnv', text: '新译本'},
+        {value: 'csb', text: '标准译本'},
+        {value: 'ccb', text: '当代译本'},
+    ];
+
+    //Clear previous options
+    versionSelect.innerHTML = '';
+
+    //Populate Select with new options
+    chineseVersions.forEach(option =>{
+        const newOption = document.createElement('option');
+        newOption.value= option.value;
+        newOption.textContent = option.text;
+        versionSelect.appendChild(newOption);
+    });
 }
