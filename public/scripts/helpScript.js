@@ -153,14 +153,18 @@ const helpWindowHTMLChinese = `
  <div id = "helpWindow" class ="helpWindow">
         <button id ="closeHelp">X</button>
         <p id = "helpText" class = "helpText"></p>
+        <!-- Welcome to-->
         <h1 class ="welcome">欢迎参加经文记忆测验！</h1>
+        <!-- This is a detailed --> 
         <h3>这是对《圣经经文记忆测验游戏》的详细介绍。</h3>
 
         <h4>开始</h4>
 
+        <!-- Information about the game -->
         <p>欢迎参加《圣经经文记忆测验》，这是一个旨在测试和提高你对圣经经文记忆的互动游戏。以下是你开始记忆经文之旅的方法：
         </p>
         
+        <!-- Selecting a Verse -->
         <h4>选择经文</h4>
         <div>
             
@@ -170,40 +174,45 @@ const helpWindowHTMLChinese = `
                 <option selected = "selected" hidden>创世纪</option>
             </select>
         </p>
-            <p>开始游戏时，请选择你希望记忆或测试自己的圣经中的一本书、一章和一节。这可能是深入并有意义地参与上帝话语的必要步骤。</p>
+            <p>请选择你希望记忆或测试自己的圣经经文（书-章-节）。</p>
         </div>
 
-        <h4>理解经文</h4>
-        <p>选择后，所选经文的释义版本将出现在屏幕左侧的“经文含义”框中。这个释义旨在为你提供经文信息的解释，提醒你在尝试回忆确切措辞时经文的内容。
+
+        <h4>经文内容提示 </h4>
+        <p>选择后，所选经文的释义 (paraphrase) 版本将出现在屏幕左侧的“经文内容”框中, 帮助你回忆经文的内容。
         </p>
         
+        <!-- Other paraphrases -->
         <button class="button"> 其他表达 </button> </p>
         <p>
-        此按钮允许你查看所选经文的其他释义。通过从多个角度解释经文，这个功能帮助你回忆经文的含义。
+        此按钮允许你查看所选经文的其他释义, 从不同的角度帮助你回忆经文内容。
         </p>
 
-        <h4>自定义你的体验</h4>   
+        <!-- Customizing your experience -->
+        <h4>自定义选项</h4>   
         <p>为了使你的测验体验更加个性化和有益，请考虑以下可定制的功能 </p>
         
+        <!-- Difficulty Select -->
         <h4>难度选择 </h4>
         <label for="helpSelectDifficulty"><b>难度: </b></label>
             <select id = "helpSelectDifficulty" class="select">
                 <option selected = selected hidden>50%</option>
             </select>
-        
         <p>
-        这个功能调整你需要回忆的经文文本量以完成任务。难度使用一个简化的概念来衡量，类似于机器翻译中使用的准确性度量，通过将你的回应与原文进行比较来确定相似度。你的回忆越接近原经文，你的得分越高
+        调整你通过测试所需的得分。你输入的文字会与正确的译文进行比较，计算相似度。你输入的文字越接近标准答案，你的得分就越高
         </p>
         
-        <h4>版本选择</h4>
+        <!-- Version Select -->
+        <h4>选择版本</h4>
         <label for="helpSelectVersion"><b>版本:</b></label>
         <select id = "helpSelectVersion" class="select">
-            <option selected = selected hidden>ESV</option>
+            <option selected = selected hidden>例</option>
         </select>
-        <p>圣经的不同翻译提供了经文的不同解释和措词。使用此选项选择你最熟悉的或希望挑战自己的圣经版本。
+        <p>选择你要记住经文的版本
         </p>
         
-        <h4>模糊开关 </h4>
+        <!-- Fuzz Switch -->
+        <h4>模糊开关</h4>
         <label for="helpToggle"><b>模糊得分</b></label> 
         <div id = "helpToggle" class="toggle">
             <input type="checkbox" id="btnHelp">
@@ -214,28 +223,35 @@ const helpWindowHTMLChinese = `
 
         </div>
         
-        <p> 激活此开关允许你的答案与圣经的所有可用翻译进行核对。如果你回忆的经文与所选的翻译不同，这个功能特别有用，确保你不会因版本特定的措辞差异而受到惩罚。
+        <!-- Activating this Switch -->
+        <p>激活此开关允许你的答案与各种不同的译本相比较，使用任何版本的措辞都可以得分。 
         </p>
         
+        <!-- Engaging with the Quiz -->
         <h3>参与测验 </h3>
         <h4>当你深入测验时，以下是你可以期待的：</h4>
         
-        <h4>输入你的答案</h4>
-        <p>T在屏幕右侧的<button class="peekButton" style="float: none">“输入你的答案”</button>框中，你将输入你认为原经文说的是什么。当你输入你的答案时，你会注意到你的得分在波动。正确回忆的内容越多，得分就越高，为你的进步提供反馈以鼓励。
+        <!-- Entering your answer -->
+        <h4>输入您的答案</h4>
+        <p>在屏幕右侧的<button class="peekButton" style="float: none">输入你的答案</button>框中，输入你所记得的经文内容。框下的分数会随着你输入的内容而变化。回忆正确的内容越多，得分就越高。
         </p>
         
+        <!-- Reviewing the Verse -->
         <h4>复习经文</h4>
-        <p>如果你在开始前需要复习,  <button class="peekButton" style="float: none">复习经文</button> 请点击导航栏中经文选择旁边的“复习经文”按钮，可以偷看经文。请注意，一旦你开始输入你的答案，为了确保公平的挑战，再次查看经文的能力将受到限制。
+        <p>如果你在开始前需要复习，请点击导航栏中经文选择旁边的,  <button class="peekButton" style="float: none">复习经文</button>按钮，可以再看一次要记的经文。一旦你开始输入你的答案，就不能反复查看标准答案。
         </p>
         
-        <h4>得分可见性</h4>
+        <!-- Score Visibility -->
+        <h4>显示得分</h4>
         <p>
-        <button class ="button">隐藏/显示得分</button> 按钮允许你切换你的得分的可见性。这个选项允许你在没有实时得分的压力下专注于回忆，或相反，实时监控你的进展。
+        <button class ="button">显示得分/不显示得分</button>按钮决定是否要看分数
         </p>
         
-        <h4>实现正确性</h4>
+        
+        <!--- Achieving Correctness  -->
+        <h4>完成测试</h4>
         <p>
-        你选择的难度等级决定了正确答案所需的得分阈值。达到所需得分后，屏幕底部会显示“正确！”的祝贺信息，然后在“完整经文”下揭示完整的经文。
+        你所输入的内容达到所需得分后，屏幕底部会显示“正确！”的祝贺信息，并在“完整经文”下显示出完整的经文。
         </p>
            
         
