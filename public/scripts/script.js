@@ -8,6 +8,9 @@ let booksData = {};
 const paraphrasesRef = '/jsonFiles/wholeBibleWithVersions.json';
 let paraphraseData = {};
 
+//URL for JSON file with Chinese paraphrase information
+const chineseParaphrasesRef = '/jsonFiles/chineseBibleWithVersions.json';
+
 // Async function to load and parse the JSON file
 async function loadBooksData() {
     try {
@@ -26,10 +29,21 @@ async function loadParaphraseData() {
         const response = await fetch(paraphrasesRef);
         const data = await response.json();
 
-        // Assuming the JSON structure matches your needs directly
         paraphraseData = data;
     } catch (error) {
         console.error('Error loading books data:', error);
+    }
+}
+
+//Load paraphrases in Chinese
+async function loadChineseParaphrases(){
+    try {
+        const response = await fetch(chineseParaphrasesRef);
+        const data = await response.json();
+
+        paraphraseData = data;
+    } catch (error){
+        console.log('Error loading in paraphrases data:', error);
     }
 }
 
@@ -48,7 +62,12 @@ const verseText = document.getElementById('currentVerse');
 
 //Set variables that will can be changed
 let currentDifficulty = 50; //Default difficulty is 50%
-let currentVersion = 'esv'; //Default version is ESV
+
+//Set default current version based on language chosen
+if (currentLanguage.value === 'zho') {
+    currentVersion = "rcuv";
+}
+else currentVersion = 'esv';
 
 let currentBook = 'Genesis'; //Default book selection is Genesis 1:1
 let bookNumber =  "01"; //Set default book number
@@ -163,6 +182,23 @@ function browseParaphrases () {
     }
 }
 
+currentLanguage.addEventListener('change', () => {
+    //Load paraphrases from selected language
+    if(currentLanguage.value === 'zho'){
+        loadChineseParaphrases();
+    }
+    else {
+        loadParaphraseData();
+    }
+})
+
 //Load data from books and paraphrases
 loadBooksData();
-loadParaphraseData();
+
+//Load paraphrases from selected language
+if(currentLanguage.value === 'zho'){
+    loadChineseParaphrases();
+}
+else {
+    loadParaphraseData();
+}

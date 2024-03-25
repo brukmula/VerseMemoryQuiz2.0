@@ -13,7 +13,6 @@ function openHelpWindow() {
         helpWindow.innerHTML = helpWindowHTMLChinese;
     }
 
-
     // Function to handle clicks outside the help window
     function handleClickOutside(event) {
         if (!helpWindow.contains(event.target)) {
