@@ -101,7 +101,7 @@ function chinese(){
     //Change Dropdown menu to English Versions of the Bible
     const chineseVersions = [
         {value: 'rcuv', text: '和合本'},
-        {value: 'rcuv', text: '和修本'},
+        {value: 'cunps', text: '和修本'},
         {value: 'cnvs', text: '新译本'},
         {value: 'csbs', text: '标准译本'},
         {value: 'cunps', text: '当代译本'},

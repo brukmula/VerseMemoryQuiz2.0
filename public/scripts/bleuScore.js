@@ -9,7 +9,16 @@ const fuzzScore = document.getElementById('btn');
 const wonDisplay = document.getElementById('correct');
 const verseSelection = document.getElementById('verseSelect');
 
-let versions = ['esv','niv', 'kjv','nlt','net']; //Array of all Bible translations
+let versions;
+
+//Array of all Bible translations based on language
+if(currentLanguage.value === 'eng') {
+    versions = ['esv','niv', 'kjv','nlt','net'];
+}
+else {
+    versions = ['rcuv', 'cunps', 'cnvs', 'csbs', 'cunps'];
+}
+
 let showCurrentScore = true; //Keep track of visibility of current score
 let currentScore = 0; //Score is 0 by default
 score.innerText = 'Score: ' + (currentScore) + '%';
@@ -57,16 +66,57 @@ userInput.addEventListener('input', () => {
             highest.push(calculateBLEUScore(userAnswer,versionScore));
         });
 
-        currentScore = Math.max(...highest);
-        score.innerText = 'Score: ' + (currentScore) + '%';
+
+        if(currentLanguage.value === 'eng') {
+            currentScore = Math.max(...highest);
+            score.innerText = 'Score: ' + (currentScore) + '%';
+        }
+
+        //If selected language is other
+        else {
+            const reference = verseText.textContent;
+
+            //Segment the users input as well as the reference text
+            let segmentedText = handleSegmentation(userInput.value);
+            let segmentedReference =  chineseToArray(reference);
+
+
+            segmentedText.then(value => {
+                const candidate = value;
+                currentScore = Math.round((chineseBleuScore(candidate, segmentedReference) * 100) + 25);
+            })
+
+        }
+
     }
 
     //Else if fuzz isn't enabled change calculate score normally
     else {
-        //If input box isn't empty
-        const similarity =  (calculateBLEUScore(userAnswer, verse.textContent));
-        currentScore = similarity;
-        score.innerText = 'Score: ' + (currentScore) + '%';
+        let similarity;
+        if(currentLanguage.value === 'eng') {
+            //If input box isn't empty
+            similarity =  (calculateBLEUScore(userAnswer, verse.textContent));
+            currentScore = similarity;
+            score.innerText = 'Score: ' + (currentScore) + '%';
+        }
+
+        else {
+            const reference = verseText.textContent;
+
+            //Segment the users input as well as the reference text
+            let segmentedText = handleSegmentation(userInput.value);
+            let segmentedReference =  chineseToArray(reference);
+
+
+            segmentedText.then(value => {
+                const candidate = value;
+                currentScore = Math.round((chineseBleuScore(candidate, segmentedReference) * 100) + 25);
+            })
+
+            score.innerText = '分数: ' + (currentScore) + '%';
+
+        }
+
     }
 
     //Set color to green once it has  reached goal and display correct screen

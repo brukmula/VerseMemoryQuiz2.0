@@ -22,7 +22,6 @@ currentLanguage.addEventListener('change', () => {
     if (score.style.display === 'none'){
         if(currentLanguage.value === "zho"){
             scoreReveal.innerText = '不显示得分';
-            console.log("不显示得分");
         }
         else {
             scoreReveal.innerText = 'Hide Score';
