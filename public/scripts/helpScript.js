@@ -8,6 +8,7 @@ function openHelpWindow() {
     if(languageSelector.value === 'eng'){
         helpWindow.innerHTML = helpWindowHTMLEnglish;
     }
+    //If Chinese
     else if(languageSelector.value === 'zho'){
         helpWindow.innerHTML = helpWindowHTMLChinese;
     }
@@ -27,6 +28,7 @@ function openHelpWindow() {
         document.__helpWindowClickListenerAdded = true;
     }
 
+    //Close window when close button is clicked
     document.getElementById('closeHelp').addEventListener('click', () => {
         helpWindow.style.display = 'none';
     });
