@@ -32,6 +32,11 @@ function isChinese(text) {
 }
 
 function chineseBleuScore(candidate, reference) {
+
+    // Clean both candidate and reference inputs
+    const candidateArray = cleanInput(candidate);
+    const referenceArray = cleanInput(reference);
+
     // Check if both texts are Chinese
     if (!isChinese(candidate) || !isChinese(reference)) {
         console.log("One or both of the texts are not in Chinese.");
@@ -50,7 +55,7 @@ function chineseBleuScore(candidate, reference) {
     });
 
     // Additive smoothing
-    const smoothingFactor = 0.05; // This can be adjusted based on the expected error rate or data distribution
+    const smoothingFactor = 1; // This can be adjusted based on the expected error rate or data distribution
     const smoothedMatchCount = matchCount + smoothingFactor;
     const smoothedTotalCount = candidateArray.length + smoothingFactor * referenceArray.length;
 
