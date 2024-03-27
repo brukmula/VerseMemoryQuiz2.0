@@ -83,7 +83,11 @@ userInput.addEventListener('input', () => {
 
             segmentedText.then(value => {
                 const candidate = value;
-                currentScore = Math.round((chineseBleuScore(candidate, segmentedReference) * 100) + 25);
+                //If the current score is equal to 0, don't display the 25 percent increment
+                if( !(Math.round((chineseBleuScore(candidate, segmentedReference) * 100)) === 0)) {
+                    currentScore = Math.round((chineseBleuScore(candidate, segmentedReference) * 100) + 25);
+                }
+
             })
 
         }
