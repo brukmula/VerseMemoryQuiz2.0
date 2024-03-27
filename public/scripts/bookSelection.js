@@ -11,6 +11,19 @@ let currentLanguage = document.getElementById('languageSelect');
 //Get the data as soon as the window has been loaded.
 window.onload = function() {
     fetchBibleData();
+
+    switch (languageSelector.value){
+        //English interface
+        case "eng":
+            english();
+            currentVersion.value = 'rcuv';
+            break;
+        //Chinese Interface
+        case "zho":
+            chinese();
+            currentVersion.value = 'esv';
+            break;
+    }
 };
 
 currentLanguage.addEventListener('change', () => {
@@ -26,19 +39,15 @@ currentLanguage.addEventListener('change', () => {
         else {
             scoreReveal.innerText = 'Hide Score';
         }
-        showCurrentScore = true;
-        score.style.display = 'block';
     }
     //Hide score
     else {
         if(currentLanguage.value === "zho"){
-            scoreReveal.innerText = ' 显示得分';
+            scoreReveal.innerText = '显示得分';
         }
         else {
             scoreReveal.innerText = 'Show Score';
         }
-        showCurrentScore = false;
-        score.style.display = 'none';
     }
 })
 

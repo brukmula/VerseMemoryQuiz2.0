@@ -24,11 +24,20 @@ function cleanInput(input) {
         return []; // Return an empty array to prevent further errors
     }
 }
+function isChinese(text) {
+    // Regular expression to check for Chinese characters
+    // This includes characters in the range of common CJK Unified Ideographs
+    // but may not cover all possible Chinese characters.
+    return /[\u3400-\u9FBF]/.test(text);
+}
 
 function chineseBleuScore(candidate, reference) {
-    // Clean both candidate and reference inputs
-    const candidateArray = cleanInput(candidate);
-    const referenceArray = cleanInput(reference);
+    // Check if both texts are Chinese
+    if (!isChinese(candidate) || !isChinese(reference)) {
+        console.log("One or both of the texts are not in Chinese.");
+        return 0; // Or any other value you consider appropriate for this case
+    }
+
 
     //Assuming both the candidate and reference texts are already segmented
 

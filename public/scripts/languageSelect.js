@@ -19,10 +19,12 @@ languageSelector.addEventListener('change', () => {
         //English interface
         case "eng":
             english();
+            currentVersion.value = 'rcuv';
             break;
         //Chinese Interface
         case "zho":
             chinese();
+            currentVersion.value = 'esv';
             break;
     }
 });
