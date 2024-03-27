@@ -65,7 +65,7 @@ let currentDifficulty = 50; //Default difficulty is 50%
 
 //Set default current version based on language chosen
 if (currentLanguage.value === 'zho') {
-    currentVersion = "rcuv";
+    currentVersion = "rcuv"; //Set the current version to rcuv when changed to Chinese
 }
 else currentVersion = 'esv';
 
@@ -185,6 +185,7 @@ function browseParaphrases () {
 currentLanguage.addEventListener('change', () => {
     //Load paraphrases from selected language
     if(currentLanguage.value === 'zho'){
+        currentVersion = "rcuv";
         loadChineseParaphrases();
     }
     else {
