@@ -43,19 +43,18 @@ function chineseBleuScore(candidate, reference) {
         return 0; // Or any other value you consider appropriate for this case
     }
 
-
     //Assuming both the candidate and reference texts are already segmented
 
     //Calculate the unigram precision
     let matchCount = 0;
     candidateArray.forEach(word => {
-        if(referenceArray .includes(word)) {
+        if(referenceArray.includes(word)) {
             matchCount++;
         }
     });
 
     // Additive smoothing
-    const smoothingFactor = 1; // This can be adjusted based on the expected error rate or data distribution
+    const smoothingFactor = 0.5; // This can be adjusted based on the expected error rate or data distribution
     const smoothedMatchCount = matchCount + smoothingFactor;
     const smoothedTotalCount = candidateArray.length + smoothingFactor * referenceArray.length;
 

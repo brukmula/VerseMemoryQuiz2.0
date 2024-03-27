@@ -78,13 +78,13 @@ async function segmentChineseText(inputText) {
             let potentialWord = inputText.slice(i,i+j);
             if(wordList.has(potentialWord)){
                 segmentedWords.push(potentialWord); //Push word to list of segmented words
-                i += j;
+                console.log("Potential Word: " + potentialWord)
+                i += j-1;
                 found = true;
                 break;
             }
         }
         if (!found){
-            i++;
         }
     }
 
