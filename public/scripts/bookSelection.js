@@ -98,7 +98,7 @@ bookSelectButton.addEventListener('click', () => {
 
     //Change the "Chapter" text based on current language
     if(currentLanguage.value === "zho"){
-        chapterSelect.innerHTML = '<option selected = "selected" hidden>章节</option>'; // Reset chapter dropdown
+        chapterSelect.innerHTML = '<option selected = "selected" hidden>章</option>'; // Reset chapter dropdown
     }
 
     else {
@@ -126,7 +126,7 @@ chapterSelectButton.addEventListener('change', () => {
 
     //Change the "Verse" text based on current language
     if(currentLanguage.value === "zho"){
-        verseSelect.innerHTML = '<option  selected = "selected" hidden>圣经</option>'; // Reset verse dropdown
+        verseSelect.innerHTML = '<option  selected = "selected" hidden>节</option>'; // Reset verse dropdown
     }
 
     else {
