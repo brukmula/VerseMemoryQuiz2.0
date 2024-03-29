@@ -16,40 +16,17 @@ window.onload = function() {
         //English interface
         case "eng":
             english();
-            currentVersion.value = 'rcuv';
+            currentVersion.value = 'esv';
+            scoreReveal.innerText = "Hide Score";
             break;
         //Chinese Interface
         case "zho":
             chinese();
-            currentVersion.value = 'esv';
+            currentVersion.value = 'rcuv';
+            scoreReveal.innerText = "不显示得分";
             break;
     }
 };
-
-currentLanguage.addEventListener('change', () => {
-    //Call the fetch function to get all the names of the books
-    fetchBibleData();
-
-
-    //Reveal Score
-    if (score.style.display === 'none'){
-        if(currentLanguage.value === "zho"){
-            scoreReveal.innerText = '不显示得分';
-        }
-        else {
-            scoreReveal.innerText = 'Hide Score';
-        }
-    }
-    //Hide score
-    else {
-        if(currentLanguage.value === "zho"){
-            scoreReveal.innerText = '显示得分';
-        }
-        else {
-            scoreReveal.innerText = 'Show Score';
-        }
-    }
-})
 
 async function fetchBibleData() {
     try {
@@ -77,12 +54,14 @@ async function fetchBibleData() {
 function populateBooks() {
 
     const bookSelect = document.getElementById('bookSelect');
+    const selectedValue = bookSelect.value; // Store the currently selected value
 
     // Clear the existing options in the bookSelect dropdown
     while (bookSelect.options.length > 0) {
         bookSelect.remove(0);
     }
 
+    //Load the books into the display
     bibleData.books.forEach(book => {
         const option = new Option(book.bookName, book.bookName);
         bookSelect.options.add(option);
@@ -105,8 +84,10 @@ bookSelectButton.addEventListener('click', () => {
         chapterSelect.innerHTML = '<option selected = "selected" hidden>Chapter</option>'; // Reset chapter dropdown
     }
 
-
+    //Match the users selection to the database
     const selectedBook = bibleData.books.find(book => book.bookName === bookSelect.value);
+
+    //Load the chapters into the display
     if (selectedBook) {
         selectedBook.chapters.forEach(chapter => {
             const option = new Option(chapter.chapter, chapter.chapter);
@@ -133,7 +114,10 @@ chapterSelectButton.addEventListener('change', () => {
         verseSelect.innerHTML = '<option  selected = "selected" hidden>Verse</option>'; // Reset verse dropdown
     }
 
+    //Fetch the name of the book the user selected
     const selectedBook = bibleData.books.find(book => book.bookName === bookSelect.value);
+
+    //Display the verses for the user
     if (selectedBook) {
         const selectedChapter = selectedBook.chapters.find(chapter => chapter.chapter === parseInt(chapterSelect.value));
         if (selectedChapter) {

@@ -13,20 +13,37 @@ const answerTitle = document.getElementById('answerTitle');
 const overlayText = document.getElementById('overlayText');
 const completedVerseTitle = document.getElementById('completedVerseTitle');
 
-//Check to see if language is changed
+//Actions when a language is changed
 languageSelector.addEventListener('change', () => {
+
+    //Call function that gets the names of the books
+    fetchBibleData();
+
     switch (languageSelector.value){
         //English interface
         case "eng":
             english();
-            currentVersion.value = 'rcuv';
+            currentVersion.value = 'esv';
+
+            //Load in book and paraphrase data
+            loadBooksData();
+            loadParaphraseData();
+
             break;
         //Chinese Interface
         case "zho":
             chinese();
-            currentVersion.value = 'esv';
+            currentVersion.value = 'rcuv';
+
+            //Load Chinese Books and paraphrases
+            loadChineseBooksData();
+            loadChineseParaphrases();
+
             break;
     }
+
+    //Display first paraphrase
+    paraphraseDisplay.innerText = paraphrases[paraphraseIndex];
 });
 
 //If current language is switched to English
@@ -44,13 +61,14 @@ function english(){
     answerTitle.innerText = 'Enter Your Answer';
     overlayText.innerText = 'CORRECT!'
     completedVerseTitle.innerText = "Complete Verse";
+    score.innerText = 'Score: ' + (currentScore) + '%';
 
     //Depending on what user wants to see
     if (score.style.display === 'none') {
-        scoreReveal.innerText = 'Hide Score';
+        scoreReveal.innerText = 'Show Score';
     }
     else {
-        scoreReveal.innerText = 'Show Score';
+        scoreReveal.innerText = 'Hide Score';
     }
 
     //Change Dropdown menu to English Versions of the Bible
@@ -88,19 +106,19 @@ function chinese(){
     paraphraseTitle.innerText = "经文内容";
     paraphraseButton.innerText = "其他释义";
     answerTitle.innerText = "输入您的答案";
-    overlayText.innerText = "正确的！";
+    overlayText.innerText = "正确！";
     completedVerseTitle.innerText = "完整经文";
+    score.innerText = '分数: ' + (currentScore) + '%';
 
     //Depending on what user wants to see
     if (score.style.display === 'none') {
-        scoreReveal.innerText = '不显示得分';
+        scoreReveal.innerText = '显示得分';
     }
     else {
-        scoreReveal.innerText = '显示得分';
+        scoreReveal.innerText = '不显示得分';
     }
 
     //Change dropdown menu to Chinese versions of the Bible
-    //Change Dropdown menu to English Versions of the Bible
     const chineseVersions = [
         {value: 'rcuv', text: '和合本'},
         {value: 'cunps', text: '和修本'},

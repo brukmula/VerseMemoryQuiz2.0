@@ -4,6 +4,8 @@
 const booksRef = '/jsonFiles/references.json'
 let booksData = {};
 
+const chineseBooksRef = '/jsonFiles/chineseReferences.json';
+
 //URL for JSON file with paraphrase information
 const paraphrasesRef = '/jsonFiles/wholeBibleWithVersions.json';
 let paraphraseData = {};
@@ -15,6 +17,18 @@ const chineseParaphrasesRef = '/jsonFiles/chineseBibleWithVersions.json';
 async function loadBooksData() {
     try {
         const response = await fetch(booksRef);
+        const data = await response.json();
+        // Assuming the JSON structure matches your needs directly
+        booksData = data;
+    } catch (error) {
+        console.error('Error loading books data:', error);
+    }
+}
+
+//Parse the JSON file for Chinese texts
+async function loadChineseBooksData() {
+    try {
+        const response = await fetch(chineseBooksRef);
         const data = await response.json();
         // Assuming the JSON structure matches your needs directly
         booksData = data;
@@ -51,13 +65,10 @@ async function loadChineseParaphrases(){
 const bookSelect = document.getElementById('bookSelect');
 const chapterSelect = document.getElementById('chapterSelect');
 const verseSelect = document.getElementById('verseSelect');
-
 const difficultySelect = document.getElementById('difficulty');
 const versionSelect = document.getElementById('versionSelect');
 const paraphraseButton = document.getElementById('paraphraseButton');
-
 const paraphraseDisplay = document.getElementById('paraphrase');
-
 const verseText = document.getElementById('currentVerse');
 
 //Set variables that will can be changed
@@ -69,9 +80,8 @@ if (currentLanguage.value === 'zho') {
 }
 else currentVersion = 'esv';
 
-let currentBook = 'Genesis'; //Default book selection is Genesis 1:1
-let bookNumber =  "01"; //Set default book number
-let chapterNumber = "001"; //Set default chapter number
+let bookNumber = "01"; //Set default book number
+let chapterNumber  = "001"; //Set default chapter number
 let verseNumber = "001";
 
 let verseLoaded = false; // If the verse hasn't loaded yet
@@ -81,9 +91,10 @@ let paraphrases = {};
 
 //Load current book
 bookSelect.addEventListener('change', () => {
-    currentBook = bookSelect.value; //Get book string
+    let currentBook = bookSelect.value; //Get book string
+    console.log("Before fetchBook, selected:", currentBook);
     bookNumber = fetchBook(booksData,currentBook); //Send to fetch book to see what number is used to reference it
-
+    console.log("After fetchBook, selected:", bookSelect.value);
 });
 
 //Load in current chapter
@@ -93,6 +104,7 @@ chapterSelect.addEventListener('change', () => {
 
 //load in current verse
 verseSelect.addEventListener('change', () => {
+
     verseNumber = formatNumberToThreeDigits(parseInt(verseSelect.value));  //Change to three digit format
     currentVerse = (bookNumber + '' + chapterNumber + '' + verseNumber); //This is the # id for the current verse for the JSON file to reference
 
@@ -182,24 +194,14 @@ function browseParaphrases () {
     }
 }
 
-currentLanguage.addEventListener('change', () => {
-    //Load paraphrases from selected language
-    if(currentLanguage.value === 'zho'){
-        currentVersion = "rcuv";
-        loadChineseParaphrases();
-    }
-    else {
-        loadParaphraseData();
-    }
-})
-
-//Load data from books and paraphrases
-loadBooksData();
-
 //Load paraphrases from selected language
 if(currentLanguage.value === 'zho'){
+    //Load Chinese Books and paraphrases
+    loadChineseBooksData();
     loadChineseParaphrases();
 }
 else {
+    //Load data from books and paraphrases
+    loadBooksData();
     loadParaphraseData();
 }

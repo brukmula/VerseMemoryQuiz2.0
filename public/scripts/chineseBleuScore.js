@@ -39,7 +39,6 @@ function chineseBleuScore(candidate, reference) {
 
     // Check if both texts are Chinese
     if (!isChinese(candidate) || !isChinese(reference)) {
-        console.log("One or both of the texts are not in Chinese.");
         return 0; // Or any other value you consider appropriate for this case
     }
 

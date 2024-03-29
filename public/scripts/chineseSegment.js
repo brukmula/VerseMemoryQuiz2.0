@@ -8,13 +8,10 @@ userInput.addEventListener('input', () => {
     let segmentedText = handleSegmentation(userInput.value);
     let segmentedReference =  chineseToArray(reference);
 
-    console.log('Scripture: ', segmentedReference);
-
     segmentedText.then(value => {
         console.log("User's text segmented: ", (value));
         const candidate = value;
         console.log((chineseBleuScore(candidate, segmentedReference) * 100));
-        const chineseScore = Math.round(chineseBleuScore(candidate, segmentedReference) * 100);
     })
 
 });
