@@ -42,8 +42,15 @@ languageSelector.addEventListener('change', () => {
             break;
     }
 
-    //Display first paraphrase
-    paraphraseDisplay.innerText = paraphrases[paraphraseIndex];
+    //Clear the text from the paraphrase display
+    paraphraseDisplay.innerText = ' ';
+
+    //Reset the chapter and verse selection
+    chapterSelect.style.visibility = 'hidden';
+    verseSelect.style.visibility = 'hidden';
+
+    //Set the verse text to current verse content
+    verseText.textContent = fetchVerse(currentVerse);
 });
 
 //If current language is switched to English
@@ -90,7 +97,6 @@ function english(){
         newOption.textContent = option.text;
         versionSelect.appendChild(newOption);
     });
-
 }
 
 //If current language is chinese
@@ -137,4 +143,5 @@ function chinese(){
         newOption.textContent = option.text;
         versionSelect.appendChild(newOption);
     });
+
 }

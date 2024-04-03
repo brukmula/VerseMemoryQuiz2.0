@@ -92,9 +92,7 @@ let paraphrases = {};
 //Load current book
 bookSelect.addEventListener('change', () => {
     let currentBook = bookSelect.value; //Get book string
-    console.log("Before fetchBook, selected:", currentBook);
     bookNumber = fetchBook(booksData,currentBook); //Send to fetch book to see what number is used to reference it
-    console.log("After fetchBook, selected:", bookSelect.value);
 });
 
 //Load in current chapter
