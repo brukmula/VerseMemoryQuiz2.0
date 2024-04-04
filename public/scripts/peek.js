@@ -12,6 +12,11 @@ let peekUsed = false;
 //Refresh what is in the peek box whenever the current version is changed
 versionSelected.addEventListener('change', () => {
     peekVerse.innerText = verseText.textContent;
+
+    if (currentLanguage.value === 'zho'){
+        // Replace all spaces with an empty string when in Chinese (remove segmentation)
+        peekVerse.innerText = verseText.textContent.replace(/\s+/g, '');
+    }
 })
 
 //If user wants to see the current verse let them 'peek'
@@ -21,7 +26,7 @@ peekButton.addEventListener('click', () => {
 
     // If they have pressed the peek button and haven't used it yet
     if (!peekEnabled && !peekUsed) {
-        peekVerse.innerText = verseText.innerHTML;
+        peekVerse.innerText = verseText.textContent;
         peekEnabled = true;
     }
 

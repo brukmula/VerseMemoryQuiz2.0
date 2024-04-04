@@ -85,7 +85,11 @@ userInput.addEventListener('input', () => {
                 const candidate = value;
                 //If the current score is equal to 0, don't display the 25 percent increment
                 if( !(Math.round((chineseBleuScore(candidate, segmentedReference) * 100)) === 0)) {
-                    currentScore = Math.round((chineseBleuScore(candidate, segmentedReference) * 100) + 25);
+                    currentScore = Math.round((chineseBleuScore(candidate, segmentedReference) * 100));
+                    //Curve score by 25%
+                    if(currentScore >= 25) {
+                        currentScore += 25;
+                    }
                 }
 
             })
@@ -114,7 +118,11 @@ userInput.addEventListener('input', () => {
 
             segmentedText.then(value => {
                 const candidate = value;
-                currentScore = Math.round((chineseBleuScore(candidate, segmentedReference) * 100) + 25);
+                currentScore = Math.round((chineseBleuScore(candidate, segmentedReference) * 100));
+                //Curve score by 25%
+                if(currentScore >= 25) {
+                    currentScore += 25;
+                }
             })
 
             score.innerText = '分数: ' + (currentScore) + '%';
@@ -125,6 +133,12 @@ userInput.addEventListener('input', () => {
 
     //Set color to green once it has  reached goal and display correct screen
     if(currentScore >= difficulty.value){
+
+        //If language is Chinese, remove segmentation before displaying
+        if(currentLanguage.value === 'zho'){
+            verse.textContent.replace(/\s+/g, '');
+        }
+
         verse.style.visibility = 'visible';
         score.style.color = 'darkgreen';
 
