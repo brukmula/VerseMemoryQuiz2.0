@@ -136,7 +136,7 @@ userInput.addEventListener('input', () => {
 
         //If language is Chinese, remove segmentation before displaying
         if(currentLanguage.value === 'zho'){
-            verse.textContent.replace(/\s+/g, '');
+            verse.textContent = verse.textContent.replace(/\s+/g, '');
         }
 
         verse.style.visibility = 'visible';
