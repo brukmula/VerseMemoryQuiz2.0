@@ -121,7 +121,10 @@ verseSelect.addEventListener('change', () => {
 
 //Wait for user to change the difficulty
 difficultySelect.addEventListener('change',() => {
+    const userAnswer = document.getElementById('userInput');
     currentDifficulty = parseInt(difficultySelect.value);
+    verseText.style.visibility = 'hidden'; // Hide the verse text when user changes the difficulty
+    userAnswer.value = ''; // Remove text from user input box
     overlayUsed = false;
 });
 
