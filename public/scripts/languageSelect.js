@@ -120,6 +120,8 @@ function chinese(){
     completedVerseTitle.innerText = "完整经文";
     score.innerText = '分数: ' + (currentScore) + '%';
 
+    currentVersion = 'rcuv';
+
     //Depending on what user wants to see
     if (score.style.display === 'none') {
         scoreReveal.innerText = '显示得分';

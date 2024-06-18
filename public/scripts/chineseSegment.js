@@ -3,15 +3,15 @@
 userInput.addEventListener('input', () => {
 
     const reference = verseText.textContent;
+    console.log(reference);
 
     //If they pressed the peek button, turn it off as soon as they start typing
     let segmentedText = handleSegmentation(userInput.value);
     let segmentedReference =  chineseToArray(reference);
 
-    segmentedText.then(value => {
-        console.log("User's text segmented: ", (value));
-        const candidate = value;
-        console.log((chineseBleuScore(candidate, segmentedReference) * 100));
+    segmentedText.then(candidate => {
+        console.log("User's text segmented: ", (segmentedText));
+        currentScore = chineseBleuScore(candidate, segmentedReference) * 100;
     })
 
 });
@@ -57,9 +57,9 @@ async function loadJsonContent(url){
 async function segmentChineseText(inputText) {
     //Load JSON content from urls
     //Load in dictionary file
-    const wordList = new Set(await loadJsonContent('/jsonFiles/ChineseWords.json'));
+    const wordList = new Set(await loadJsonContent('public/jsonFiles/ChineseWords.json'));
     //Load in overlap file
-    const overlapContent = await loadJsonContent('/jsonFiles/overlap.json');
+    const overlapContent = await loadJsonContent('public/jsonFiles/overlap.json');
     //Create a map for overlaps
     const overlapMap = new Map(Object.entries(overlapContent));
 

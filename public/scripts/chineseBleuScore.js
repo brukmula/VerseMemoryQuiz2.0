@@ -44,7 +44,7 @@ function chineseBleuScore(candidate, reference) {
 
     //Assuming both the candidate and reference texts are already segmented
 
-    //Calculate the unigram precision
+    //Calculate the uni gram precision
     let matchCount = 0;
     candidateArray.forEach(word => {
         if(referenceArray.includes(word)) {
