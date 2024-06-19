@@ -41,9 +41,9 @@ async function loadJsonContent(url){
 async function segmentChineseText(inputText) {
     //Load JSON content from urls
     //Load in dictionary file
-    const wordList = new Set(await loadJsonContent('public/jsonFiles/ChineseWords.json'));
+    const wordList = new Set(await loadJsonContent('/jsonFiles/ChineseWords.json'));
     //Load in overlap file
-    const overlapContent = await loadJsonContent('public/jsonFiles/overlap.json');
+    const overlapContent = await loadJsonContent('/jsonFiles/overlap.json');
     //Create a map for overlaps
     const overlapMap = new Map(Object.entries(overlapContent));
 
