@@ -51,7 +51,6 @@ languageSelector.addEventListener('change', () => {
 
     //Set the verse text to current verse content
     verseText.textContent = fetchVerse(currentVerse);
-    peekVerse.innerText = verseText.textContent;
 
     //Set peek used to false so the user can check the peek window again
     peekUsed = false;

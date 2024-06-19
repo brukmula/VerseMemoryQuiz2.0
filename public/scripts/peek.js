@@ -27,6 +27,11 @@ peekButton.addEventListener('click', () => {
     // If they have pressed the peek button and haven't used it yet
     if (!peekEnabled && !peekUsed) {
         peekVerse.innerText = verseText.textContent;
+
+        // If Chinese, remove spaces from verse.
+        if(currentLanguage.value === 'zho'){
+            peekVerse.innerText = verseText.textContent.replace(/\s+/g, '');
+        }
         peekEnabled = true;
     }
 

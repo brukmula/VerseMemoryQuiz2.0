@@ -1,21 +1,5 @@
 //This script segments Chinese texts
 
-userInput.addEventListener('input', () => {
-
-    const reference = verseText.textContent;
-    console.log(reference);
-
-    //If they pressed the peek button, turn it off as soon as they start typing
-    let segmentedText = handleSegmentation(userInput.value);
-    let segmentedReference =  chineseToArray(reference);
-
-    segmentedText.then(candidate => {
-        console.log("User's text segmented: ", (segmentedText));
-        currentScore = chineseBleuScore(candidate, segmentedReference) * 100;
-    })
-
-});
-
 //This function changes the Chinese Reference texts to arrays
 function chineseToArray (sentence){
     // Define a list of common Chinese punctuation marks to remove

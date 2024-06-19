@@ -35,7 +35,12 @@ fuzzScore.addEventListener('change', () => {
 //When a new verse is selected reset the peek window
 verseSelection.addEventListener('change', () => {
     peekUsed = false;
-    peekVerse.innerText = verseText.innerHTML;
+    peekVerse.innerText = verseText.textContent;
+
+    // If Chinese, remove segmentation from peek verse.
+    if(currentLanguage.value === 'zho'){
+        peekVerse.innerText = verseText.textContent.replace(/\s+/g, '');
+    }
 })
 
 //When user chooses to close peek
@@ -67,14 +72,17 @@ userInput.addEventListener('input', () => {
         });
 
 
+        // If the current language is English
         if(currentLanguage.value === 'eng') {
             currentScore = Math.max(...highest);
             score.innerText = 'Score: ' + (currentScore) + '%';
         }
 
-        //If selected language is other
-        else {
+        //If selected language is not English
+        else if (currentLanguage.value === 'zho') {
             const reference = verseText.textContent;
+
+            console.log()
 
             //Segment the users input as well as the reference text
             let segmentedText = handleSegmentation(userInput.value);
@@ -85,6 +93,8 @@ userInput.addEventListener('input', () => {
                 const candidate = value;
                 //If the current score is equal to 0, don't display the 25 percent increment
                 if( !(Math.round((chineseBleuScore(candidate, segmentedReference) * 100)) === 0)) {
+                    console.log('Chinese Score: ' + currentScore)
+                    console.log("Score before rounding" + (chineseBleuScore(candidate, segmentedReference) * 100));
                     currentScore = Math.round((chineseBleuScore(candidate, segmentedReference) * 100));
                     //Curve score by 25%
                     if(currentScore >= 25) {
@@ -108,7 +118,7 @@ userInput.addEventListener('input', () => {
             score.innerText = 'Score: ' + (currentScore) + '%';
         }
 
-        else {
+        else if (currentLanguage.value === 'zho') {
             const reference = verseText.textContent;
 
             //Segment the users input as well as the reference text
@@ -119,6 +129,7 @@ userInput.addEventListener('input', () => {
             segmentedText.then(value => {
                 const candidate = value;
                 currentScore = Math.round((chineseBleuScore(candidate, segmentedReference) * 100));
+
                 //Curve score by 25%
                 if(currentScore >= 25) {
                     currentScore += 25;
@@ -133,11 +144,6 @@ userInput.addEventListener('input', () => {
 
     //Set color to green once it has  reached goal and display correct screen
     if(currentScore >= difficulty.value){
-
-        //If language is Chinese, remove segmentation before displaying
-        if(currentLanguage.value === 'zho'){
-            verse.textContent = verse.textContent.replace(/\s+/g, '');
-        }
 
         verse.style.visibility = 'visible';
         score.style.color = 'darkgreen';
